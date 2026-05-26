@@ -1,0 +1,683 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="寺子屋にじがおか 2026年度（令和8年度）の開催日・開催時間予定一覧。学年別の開始・終了時刻をスマホで確認できます。">
+<meta name="robots" content="index, follow">
+<title>開催時間予定 ｜ 寺子屋にじがおか（2026年度）</title>
+<link rel="icon" type="image/png" href="../_assets/logo.png">
+<style>
+  :root{
+    --navy:#1e3a8a;
+    --navy-deep:#172554;
+    --ink:#111827;
+    --sub:#374151;
+    --line:#d1d5db;
+    --bg:#f8fafc;
+    --card:#ffffff;
+    --a:#dbeafe;
+    --b:#dcfce7;
+    --c:#ffedd5;
+    --off:#e5e7eb;
+  }
+  *{box-sizing:border-box}
+  html,body{margin:0;padding:0;background:var(--bg);color:var(--ink);font-family:-apple-system,BlinkMacSystemFont,"Hiragino Sans","ヒラギノ角ゴシック","Yu Gothic UI",sans-serif;line-height:1.6;-webkit-text-size-adjust:100%}
+  a{color:var(--navy);text-decoration:underline}
+  .wrap{max-width:780px;margin:0 auto;padding:24px 16px 64px}
+  header{display:flex;align-items:center;gap:12px;padding-bottom:16px;border-bottom:2px solid var(--navy)}
+  header img{width:48px;height:48px;border-radius:8px}
+  header .title{font-weight:700;font-size:18px;line-height:1.3}
+  header .title small{display:block;font-weight:400;font-size:12px;color:var(--sub);margin-top:2px}
+  h1{font-size:22px;margin:24px 0 8px;color:var(--navy-deep)}
+  h2{font-size:16px;margin:28px 0 10px;color:var(--navy-deep);padding-left:10px;border-left:4px solid var(--navy)}
+  p.lead{margin:8px 0 16px;color:var(--sub);font-size:14px}
+  .note{background:#fefce8;border-left:4px solid #ca8a04;padding:10px 12px;margin:12px 0;border-radius:0 6px 6px 0;font-size:13px;color:#713f12}
+
+  /* 凡例カード（区分の見方）— 各日の表示と同じ箱デザインで揃える */
+  .legend{background:var(--card);border:1px solid var(--line);border-radius:8px;padding:16px;margin:12px 0 24px}
+  .legend-item{display:flex;align-items:center;gap:14px;padding:14px 0;border-bottom:1px dashed #e5e7eb}
+  .legend-item:last-child{border-bottom:none}
+  .legend-item .pill{flex-shrink:0;font-size:14px;padding:5px 14px}
+  .legend-item .body{flex:1;min-width:0}
+  .legend-item .desc{font-size:14px;color:var(--sub);margin-bottom:8px;font-weight:600}
+  .legend-item .slots-row{margin-top:0}
+
+  /* 月別ジャンプタブ */
+  .month-tabs{position:sticky;top:0;background:var(--bg);z-index:10;padding:10px 0;margin:0 -16px 16px;border-bottom:1px solid var(--line)}
+  .month-tabs .inner{display:flex;gap:6px;overflow-x:auto;padding:0 16px;-webkit-overflow-scrolling:touch;scrollbar-width:thin}
+  .month-tabs .inner::-webkit-scrollbar{height:4px}
+  .month-tabs a{flex-shrink:0;display:inline-block;padding:8px 14px;background:#fff;border:1.5px solid var(--line);border-radius:999px;color:var(--navy);text-decoration:none;font-weight:700;font-size:14px;white-space:nowrap;transition:all .15s}
+  .month-tabs a:hover,.month-tabs a:focus{background:var(--navy);color:#fff;border-color:var(--navy)}
+  .month-tabs .label{font-size:12px;color:var(--sub);font-weight:600;padding:8px 4px;flex-shrink:0}
+
+  /* スクロール時の見出し位置を補正（タブ分オフセット） */
+  .month{margin:24px 0;scroll-margin-top:70px}
+
+  .pill{display:inline-block;padding:3px 12px;border-radius:999px;font-weight:700;font-size:12px}
+  .pill-a{background:var(--a);color:#1e3a8a}
+  .pill-b{background:var(--b);color:#14532d}
+  .pill-c{background:var(--c);color:#7c2d12}
+  .pill-off{background:var(--off);color:#4b5563}
+
+  /* スケジュール */
+  .month h3{margin:0 0 8px;font-size:17px;color:var(--navy-deep);background:#eef2ff;padding:8px 14px;border-radius:6px}
+  .day{background:var(--card);border:1px solid var(--line);border-radius:8px;padding:12px;margin-bottom:8px}
+  .day.off{background:#f3f4f6}
+  .day .head{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:6px}
+  .day .date{font-weight:700;font-size:17px;min-width:84px}
+  .day .event{font-size:13px;color:var(--sub)}
+
+  /* 時間帯グループ：5学年の小箱を維持しつつ、同じ時間帯の学年を1つの枠で囲む */
+  .slots-row{display:flex;gap:6px;margin-top:10px}
+  .slot-box{flex:1;border:2px solid;border-radius:8px;padding:8px 5px;display:flex;flex-direction:column}
+  .slot-box .grades-row{display:flex;gap:3px;justify-content:center;flex-wrap:wrap;margin-bottom:6px}
+  .slot-box .grade{font-size:14px;font-weight:700;background:rgba(255,255,255,0.75);border-radius:5px;padding:3px 8px;min-width:34px;text-align:center}
+  .slot-box .time{font-size:15px;font-weight:700;text-align:center;font-variant-numeric:tabular-nums;padding:2px 0}
+  /* 区分別の色 */
+  .slot-box.gA{border-color:#3b82f6;background:#dbeafe;color:#1e3a8a}
+  .slot-box.gB{border-color:#22c55e;background:#dcfce7;color:#14532d}
+  .slot-box.gC{border-color:#f97316;background:#ffedd5;color:#7c2d12}
+  /* 学年数に応じて flex 比率を変える（5学年合計） */
+  .slot-box[data-grades="1"]{flex:1}
+  .slot-box[data-grades="2"]{flex:2}
+  .slot-box[data-grades="3"]{flex:3}
+  .slot-box[data-grades="5"]{flex:5}
+  .day.off .msg{font-weight:700;color:#4b5563;text-align:center;padding:8px}
+
+  /* スマホ最適化 */
+  @media (max-width:480px){
+    .slots-row{gap:4px}
+    .slot-box{padding:7px 4px}
+    .slot-box .grade{font-size:13px;padding:2px 6px;min-width:30px}
+    .slot-box .time{font-size:14px}
+    .day .date{font-size:16px;min-width:78px}
+    h1{font-size:20px}
+    .legend-item .slot .g{min-width:80px}
+  }
+
+  footer{margin-top:48px;padding-top:20px;border-top:1px solid var(--line);font-size:13px;color:var(--sub)}
+  footer .contact{background:var(--card);border:1px solid var(--line);border-radius:8px;padding:14px;margin-bottom:12px}
+  footer .contact dt{font-weight:700;margin-top:8px;color:var(--ink)}
+  footer .contact dt:first-child{margin-top:0}
+  footer .contact dd{margin:2px 0 0;padding-left:0}
+  footer .updated{text-align:right;font-size:12px;color:#6b7280}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header>
+  <img src="../_assets/logo.png" alt="寺子屋にじがおか ロゴ">
+  <div class="title">寺子屋にじがおか
+    <small>放課後学習支援｜虹ヶ丘小学校</small>
+  </div>
+</header>
+
+<h1>開催時間予定（2026年度・保護者向け）</h1>
+<p class="lead">2026年6月10日（水）開講。学年・日付によって開始・終了時間が異なりますので、お子さんの学年の欄をご確認ください。</p>
+
+<div class="note">
+  曜日：すべて<strong>水曜日</strong>開催／会場：虹ヶ丘小学校／終了後は基本、欠席確認・下校準備を行ってから下校します。
+</div>
+
+<h2>区分の見方</h2>
+<div class="legend">
+  <div class="legend-item">
+    <span class="pill pill-a">A</span>
+    <div class="body">
+      <div class="desc">全学年同じ時間で実施</div>
+      <div class="slots-row">
+        <div class="slot-box gA" data-grades="5">
+          <div class="grades-row"><span class="grade">2年</span><span class="grade">3年</span><span class="grade">4年</span><span class="grade">5年</span><span class="grade">6年</span></div>
+          <div class="time">13:10–14:40</div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="legend-item">
+    <span class="pill pill-b">B</span>
+    <div class="body">
+      <div class="desc">2〜4年は前半／5・6年は後半</div>
+      <div class="slots-row">
+        <div class="slot-box gB" data-grades="3">
+          <div class="grades-row"><span class="grade">2年</span><span class="grade">3年</span><span class="grade">4年</span></div>
+          <div class="time">13:10–13:55</div>
+        </div>
+        <div class="slot-box gB" data-grades="2">
+          <div class="grades-row"><span class="grade">5年</span><span class="grade">6年</span></div>
+          <div class="time">14:10–15:10</div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="legend-item">
+    <span class="pill pill-c">C</span>
+    <div class="body">
+      <div class="desc">2・3年は前半／4〜6年は後半</div>
+      <div class="slots-row">
+        <div class="slot-box gC" data-grades="2">
+          <div class="grades-row"><span class="grade">2年</span><span class="grade">3年</span></div>
+          <div class="time">13:10–14:10</div>
+        </div>
+        <div class="slot-box gC" data-grades="3">
+          <div class="grades-row"><span class="grade">4年</span><span class="grade">5年</span><span class="grade">6年</span></div>
+          <div class="time">14:20–15:20</div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="legend-item">
+    <span class="pill pill-off">休</span>
+    <div class="body">
+      <div class="desc">寺子屋はお休みです</div>
+    </div>
+  </div>
+</div>
+
+<h2>月別スケジュール</h2>
+
+<!-- 月別ジャンプタブ -->
+<nav class="month-tabs" aria-label="月別ジャンプ">
+  <div class="inner">
+    <span class="label">ジャンプ →</span>
+    <a href="#m6">6月</a>
+    <a href="#m7">7月</a>
+    <a href="#m9">9月</a>
+    <a href="#m10">10月</a>
+    <a href="#m11">11月</a>
+    <a href="#m12">12月</a>
+    <a href="#m1">1月</a>
+    <a href="#m2">2月</a>
+    <a href="#m3">3月</a>
+  </div>
+</nav>
+
+<!-- 6月 -->
+<div class="month" id="m6">
+  <h3>6月</h3>
+
+  <div class="day">
+    <div class="head"><span class="date">6/10（水）</span><span class="pill pill-a">A</span><span class="event">一斉下校日（教員出張日）</span></div>
+    <div class="slots-row">
+      <div class="slot-box gA" data-grades="5">
+        <div class="grades-row"><span class="grade">2年</span><span class="grade">3年</span><span class="grade">4年</span><span class="grade">5年</span><span class="grade">6年</span></div>
+        <div class="time">13:10–14:40</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="day">
+    <div class="head"><span class="date">6/17（水）</span><span class="pill pill-c">C</span><span class="event">クラブ</span></div>
+    <div class="slots-row">
+      <div class="slot-box gC" data-grades="2">
+        <div class="grades-row"><span class="grade">2年</span><span class="grade">3年</span></div>
+        <div class="time">13:10–14:10</div>
+      </div>
+      <div class="slot-box gC" data-grades="3">
+        <div class="grades-row"><span class="grade">4年</span><span class="grade">5年</span><span class="grade">6年</span></div>
+        <div class="time">14:20–15:20</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="day">
+    <div class="head"><span class="date">6/24（水）</span><span class="pill pill-b">B</span></div>
+    <div class="slots-row">
+      <div class="slot-box gB" data-grades="3">
+        <div class="grades-row"><span class="grade">2年</span><span class="grade">3年</span><span class="grade">4年</span></div>
+        <div class="time">13:10–13:55</div>
+      </div>
+      <div class="slot-box gB" data-grades="2">
+        <div class="grades-row"><span class="grade">5年</span><span class="grade">6年</span></div>
+        <div class="time">14:10–15:10</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- 7月 -->
+<div class="month" id="m7">
+  <h3>7月</h3>
+
+  <div class="day off">
+    <div class="head"><span class="date">7/1（水）</span><span class="pill pill-off">休み</span><span class="event">市制記念日</span></div>
+    <div class="msg">寺子屋はお休みです</div>
+  </div>
+
+  <div class="day">
+    <div class="head"><span class="date">7/8（水）</span><span class="pill pill-a">A</span><span class="event">一斉下校日（教員出張日）</span></div>
+    <div class="slots-row">
+      <div class="slot-box gA" data-grades="5">
+        <div class="grades-row"><span class="grade">2年</span><span class="grade">3年</span><span class="grade">4年</span><span class="grade">5年</span><span class="grade">6年</span></div>
+        <div class="time">13:10–14:40</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="day">
+    <div class="head"><span class="date">7/15（水）</span><span class="pill pill-b">B</span><span class="event">委員会</span></div>
+    <div class="slots-row">
+      <div class="slot-box gB" data-grades="3">
+        <div class="grades-row"><span class="grade">2年</span><span class="grade">3年</span><span class="grade">4年</span></div>
+        <div class="time">13:10–13:55</div>
+      </div>
+      <div class="slot-box gB" data-grades="2">
+        <div class="grades-row"><span class="grade">5年</span><span class="grade">6年</span></div>
+        <div class="time">14:10–15:10</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- 9月 -->
+<div class="month" id="m9">
+  <h3>9月</h3>
+
+  <div class="day">
+    <div class="head"><span class="date">9/2（水）</span><span class="pill pill-b">B</span><span class="event">委員会</span></div>
+    <div class="slots-row">
+      <div class="slot-box gB" data-grades="3">
+        <div class="grades-row"><span class="grade">2年</span><span class="grade">3年</span><span class="grade">4年</span></div>
+        <div class="time">13:10–13:55</div>
+      </div>
+      <div class="slot-box gB" data-grades="2">
+        <div class="grades-row"><span class="grade">5年</span><span class="grade">6年</span></div>
+        <div class="time">14:10–15:10</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="day">
+    <div class="head"><span class="date">9/9（水）</span><span class="pill pill-b">B</span></div>
+    <div class="slots-row">
+      <div class="slot-box gB" data-grades="3">
+        <div class="grades-row"><span class="grade">2年</span><span class="grade">3年</span><span class="grade">4年</span></div>
+        <div class="time">13:10–13:55</div>
+      </div>
+      <div class="slot-box gB" data-grades="2">
+        <div class="grades-row"><span class="grade">5年</span><span class="grade">6年</span></div>
+        <div class="time">14:10–15:10</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="day">
+    <div class="head"><span class="date">9/16（水）</span><span class="pill pill-c">C</span><span class="event">クラブ</span></div>
+    <div class="slots-row">
+      <div class="slot-box gC" data-grades="2">
+        <div class="grades-row"><span class="grade">2年</span><span class="grade">3年</span></div>
+        <div class="time">13:10–14:10</div>
+      </div>
+      <div class="slot-box gC" data-grades="3">
+        <div class="grades-row"><span class="grade">4年</span><span class="grade">5年</span><span class="grade">6年</span></div>
+        <div class="time">14:20–15:20</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="day off">
+    <div class="head"><span class="date">9/23（水）</span><span class="pill pill-off">休み</span><span class="event">秋分の日</span></div>
+    <div class="msg">寺子屋はお休みです</div>
+  </div>
+
+  <div class="day">
+    <div class="head"><span class="date">9/30（水）</span><span class="pill pill-b">B</span></div>
+    <div class="slots-row">
+      <div class="slot-box gB" data-grades="3">
+        <div class="grades-row"><span class="grade">2年</span><span class="grade">3年</span><span class="grade">4年</span></div>
+        <div class="time">13:10–13:55</div>
+      </div>
+      <div class="slot-box gB" data-grades="2">
+        <div class="grades-row"><span class="grade">5年</span><span class="grade">6年</span></div>
+        <div class="time">14:10–15:10</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- 10月 -->
+<div class="month" id="m10">
+  <h3>10月</h3>
+
+  <div class="day">
+    <div class="head"><span class="date">10/7（水）</span><span class="pill pill-b">B</span><span class="event">委員会</span></div>
+    <div class="slots-row">
+      <div class="slot-box gB" data-grades="3">
+        <div class="grades-row"><span class="grade">2年</span><span class="grade">3年</span><span class="grade">4年</span></div>
+        <div class="time">13:10–13:55</div>
+      </div>
+      <div class="slot-box gB" data-grades="2">
+        <div class="grades-row"><span class="grade">5年</span><span class="grade">6年</span></div>
+        <div class="time">14:10–15:10</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="day">
+    <div class="head"><span class="date">10/14（水）</span><span class="pill pill-c">C</span><span class="event">クラブ</span></div>
+    <div class="slots-row">
+      <div class="slot-box gC" data-grades="2">
+        <div class="grades-row"><span class="grade">2年</span><span class="grade">3年</span></div>
+        <div class="time">13:10–14:10</div>
+      </div>
+      <div class="slot-box gC" data-grades="3">
+        <div class="grades-row"><span class="grade">4年</span><span class="grade">5年</span><span class="grade">6年</span></div>
+        <div class="time">14:20–15:20</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="day">
+    <div class="head"><span class="date">10/21（水）</span><span class="pill pill-a">A</span><span class="event">一斉下校日（教員出張日）</span></div>
+    <div class="slots-row">
+      <div class="slot-box gA" data-grades="5">
+        <div class="grades-row"><span class="grade">2年</span><span class="grade">3年</span><span class="grade">4年</span><span class="grade">5年</span><span class="grade">6年</span></div>
+        <div class="time">13:10–14:40</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="day">
+    <div class="head"><span class="date">10/28（水）</span><span class="pill pill-b">B</span></div>
+    <div class="slots-row">
+      <div class="slot-box gB" data-grades="3">
+        <div class="grades-row"><span class="grade">2年</span><span class="grade">3年</span><span class="grade">4年</span></div>
+        <div class="time">13:10–13:55</div>
+      </div>
+      <div class="slot-box gB" data-grades="2">
+        <div class="grades-row"><span class="grade">5年</span><span class="grade">6年</span></div>
+        <div class="time">14:10–15:10</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- 11月 -->
+<div class="month" id="m11">
+  <h3>11月</h3>
+
+  <div class="day">
+    <div class="head"><span class="date">11/4（水）</span><span class="pill pill-a">A</span><span class="event">一斉下校日（教員出張日）</span></div>
+    <div class="slots-row">
+      <div class="slot-box gA" data-grades="5">
+        <div class="grades-row"><span class="grade">2年</span><span class="grade">3年</span><span class="grade">4年</span><span class="grade">5年</span><span class="grade">6年</span></div>
+        <div class="time">13:10–14:40</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="day">
+    <div class="head"><span class="date">11/11（水）</span><span class="pill pill-a">A</span><span class="event">就学時健診</span></div>
+    <div class="slots-row">
+      <div class="slot-box gA" data-grades="5">
+        <div class="grades-row"><span class="grade">2年</span><span class="grade">3年</span><span class="grade">4年</span><span class="grade">5年</span><span class="grade">6年</span></div>
+        <div class="time">13:10–14:40</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="day">
+    <div class="head"><span class="date">11/18（水）</span><span class="pill pill-a">A</span><span class="event">一斉下校日（教員出張日）</span></div>
+    <div class="slots-row">
+      <div class="slot-box gA" data-grades="5">
+        <div class="grades-row"><span class="grade">2年</span><span class="grade">3年</span><span class="grade">4年</span><span class="grade">5年</span><span class="grade">6年</span></div>
+        <div class="time">13:10–14:40</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="day">
+    <div class="head"><span class="date">11/25（水）</span><span class="pill pill-c">C</span><span class="event">クラブ</span></div>
+    <div class="slots-row">
+      <div class="slot-box gC" data-grades="2">
+        <div class="grades-row"><span class="grade">2年</span><span class="grade">3年</span></div>
+        <div class="time">13:10–14:10</div>
+      </div>
+      <div class="slot-box gC" data-grades="3">
+        <div class="grades-row"><span class="grade">4年</span><span class="grade">5年</span><span class="grade">6年</span></div>
+        <div class="time">14:20–15:20</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- 12月 -->
+<div class="month" id="m12">
+  <h3>12月</h3>
+
+  <div class="day">
+    <div class="head"><span class="date">12/2（水）</span><span class="pill pill-a">A</span><span class="event">一斉下校日（教員出張日）</span></div>
+    <div class="slots-row">
+      <div class="slot-box gA" data-grades="5">
+        <div class="grades-row"><span class="grade">2年</span><span class="grade">3年</span><span class="grade">4年</span><span class="grade">5年</span><span class="grade">6年</span></div>
+        <div class="time">13:10–14:40</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="day">
+    <div class="head"><span class="date">12/9（水）</span><span class="pill pill-b">B</span><span class="event">委員会</span></div>
+    <div class="slots-row">
+      <div class="slot-box gB" data-grades="3">
+        <div class="grades-row"><span class="grade">2年</span><span class="grade">3年</span><span class="grade">4年</span></div>
+        <div class="time">13:10–13:55</div>
+      </div>
+      <div class="slot-box gB" data-grades="2">
+        <div class="grades-row"><span class="grade">5年</span><span class="grade">6年</span></div>
+        <div class="time">14:10–15:10</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="day">
+    <div class="head"><span class="date">12/16（水）</span><span class="pill pill-c">C</span><span class="event">クラブ</span></div>
+    <div class="slots-row">
+      <div class="slot-box gC" data-grades="2">
+        <div class="grades-row"><span class="grade">2年</span><span class="grade">3年</span></div>
+        <div class="time">13:10–14:10</div>
+      </div>
+      <div class="slot-box gC" data-grades="3">
+        <div class="grades-row"><span class="grade">4年</span><span class="grade">5年</span><span class="grade">6年</span></div>
+        <div class="time">14:20–15:20</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="day">
+    <div class="head"><span class="date">12/23（水）</span><span class="pill pill-b">B</span></div>
+    <div class="slots-row">
+      <div class="slot-box gB" data-grades="3">
+        <div class="grades-row"><span class="grade">2年</span><span class="grade">3年</span><span class="grade">4年</span></div>
+        <div class="time">13:10–13:55</div>
+      </div>
+      <div class="slot-box gB" data-grades="2">
+        <div class="grades-row"><span class="grade">5年</span><span class="grade">6年</span></div>
+        <div class="time">14:10–15:10</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- 1月 -->
+<div class="month" id="m1">
+  <h3>1月</h3>
+
+  <div class="day">
+    <div class="head"><span class="date">1/13（水）</span><span class="pill pill-b">B</span><span class="event">委員会</span></div>
+    <div class="slots-row">
+      <div class="slot-box gB" data-grades="3">
+        <div class="grades-row"><span class="grade">2年</span><span class="grade">3年</span><span class="grade">4年</span></div>
+        <div class="time">13:10–13:55</div>
+      </div>
+      <div class="slot-box gB" data-grades="2">
+        <div class="grades-row"><span class="grade">5年</span><span class="grade">6年</span></div>
+        <div class="time">14:10–15:10</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="day">
+    <div class="head"><span class="date">1/20（水）</span><span class="pill pill-b">B</span></div>
+    <div class="slots-row">
+      <div class="slot-box gB" data-grades="3">
+        <div class="grades-row"><span class="grade">2年</span><span class="grade">3年</span><span class="grade">4年</span></div>
+        <div class="time">13:10–13:55</div>
+      </div>
+      <div class="slot-box gB" data-grades="2">
+        <div class="grades-row"><span class="grade">5年</span><span class="grade">6年</span></div>
+        <div class="time">14:10–15:10</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="day">
+    <div class="head"><span class="date">1/27（水）</span><span class="pill pill-c">C</span><span class="event">クラブ</span></div>
+    <div class="slots-row">
+      <div class="slot-box gC" data-grades="2">
+        <div class="grades-row"><span class="grade">2年</span><span class="grade">3年</span></div>
+        <div class="time">13:10–14:10</div>
+      </div>
+      <div class="slot-box gC" data-grades="3">
+        <div class="grades-row"><span class="grade">4年</span><span class="grade">5年</span><span class="grade">6年</span></div>
+        <div class="time">14:20–15:20</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- 2月 -->
+<div class="month" id="m2">
+  <h3>2月</h3>
+
+  <div class="day">
+    <div class="head"><span class="date">2/3（水）</span><span class="pill pill-b">B</span><span class="event">委員会</span></div>
+    <div class="slots-row">
+      <div class="slot-box gB" data-grades="3">
+        <div class="grades-row"><span class="grade">2年</span><span class="grade">3年</span><span class="grade">4年</span></div>
+        <div class="time">13:10–13:55</div>
+      </div>
+      <div class="slot-box gB" data-grades="2">
+        <div class="grades-row"><span class="grade">5年</span><span class="grade">6年</span></div>
+        <div class="time">14:10–15:10</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="day">
+    <div class="head"><span class="date">2/10（水）</span><span class="pill pill-b">B</span></div>
+    <div class="slots-row">
+      <div class="slot-box gB" data-grades="3">
+        <div class="grades-row"><span class="grade">2年</span><span class="grade">3年</span><span class="grade">4年</span></div>
+        <div class="time">13:10–13:55</div>
+      </div>
+      <div class="slot-box gB" data-grades="2">
+        <div class="grades-row"><span class="grade">5年</span><span class="grade">6年</span></div>
+        <div class="time">14:10–15:10</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="day">
+    <div class="head"><span class="date">2/17（水）</span><span class="pill pill-c">C</span><span class="event">クラブ</span></div>
+    <div class="slots-row">
+      <div class="slot-box gC" data-grades="2">
+        <div class="grades-row"><span class="grade">2年</span><span class="grade">3年</span></div>
+        <div class="time">13:10–14:10</div>
+      </div>
+      <div class="slot-box gC" data-grades="3">
+        <div class="grades-row"><span class="grade">4年</span><span class="grade">5年</span><span class="grade">6年</span></div>
+        <div class="time">14:20–15:20</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="day">
+    <div class="head"><span class="date">2/24（水）</span><span class="pill pill-b">B</span></div>
+    <div class="slots-row">
+      <div class="slot-box gB" data-grades="3">
+        <div class="grades-row"><span class="grade">2年</span><span class="grade">3年</span><span class="grade">4年</span></div>
+        <div class="time">13:10–13:55</div>
+      </div>
+      <div class="slot-box gB" data-grades="2">
+        <div class="grades-row"><span class="grade">5年</span><span class="grade">6年</span></div>
+        <div class="time">14:10–15:10</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- 3月 -->
+<div class="month" id="m3">
+  <h3>3月</h3>
+
+  <div class="day">
+    <div class="head"><span class="date">3/3（水）</span><span class="pill pill-b">B</span><span class="event">委員会</span></div>
+    <div class="slots-row">
+      <div class="slot-box gB" data-grades="3">
+        <div class="grades-row"><span class="grade">2年</span><span class="grade">3年</span><span class="grade">4年</span></div>
+        <div class="time">13:10–13:55</div>
+      </div>
+      <div class="slot-box gB" data-grades="2">
+        <div class="grades-row"><span class="grade">5年</span><span class="grade">6年</span></div>
+        <div class="time">14:10–15:10</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="day">
+    <div class="head"><span class="date">3/10（水）</span><span class="pill pill-b">B</span></div>
+    <div class="slots-row">
+      <div class="slot-box gB" data-grades="3">
+        <div class="grades-row"><span class="grade">2年</span><span class="grade">3年</span><span class="grade">4年</span></div>
+        <div class="time">13:10–13:55</div>
+      </div>
+      <div class="slot-box gB" data-grades="2">
+        <div class="grades-row"><span class="grade">5年</span><span class="grade">6年</span></div>
+        <div class="time">14:10–15:10</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="day">
+    <div class="head"><span class="date">3/17（水）</span><span class="pill pill-b">B</span></div>
+    <div class="slots-row">
+      <div class="slot-box gB" data-grades="3">
+        <div class="grades-row"><span class="grade">2年</span><span class="grade">3年</span><span class="grade">4年</span></div>
+        <div class="time">13:10–13:55</div>
+      </div>
+      <div class="slot-box gB" data-grades="2">
+        <div class="grades-row"><span class="grade">5年</span><span class="grade">6年</span></div>
+        <div class="time">14:10–15:10</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="day off">
+    <div class="head"><span class="date">3/24（水）</span><span class="pill pill-off">休み</span><span class="event">給食なし</span></div>
+    <div class="msg">寺子屋はお休みです</div>
+  </div>
+</div>
+
+<div class="note" style="margin-top:24px">
+  お子さんの学年の欄をご確認ください。学年によって開催時間・終了時間が異なる日があります。<br>
+  「休み」の日は寺子屋はありません。終了後、基本欠席確認・下校準備を行ってから下校します。
+</div>
+
+<footer>
+  <div class="contact">
+    <dt>寺子屋にじがおか 運営委員会</dt>
+    <dd>📧 <a href="mailto:info@terakoya-nijigaoka.com">info@terakoya-nijigaoka.com</a>（担当：前村）</dd>
+    <dt>公式ホームページ</dt>
+    <dd>🔗 <a href="https://terakoya-nijigaoka.com/">terakoya-nijigaoka.com</a></dd>
+    <dt>申込フォーム（2026年度）</dt>
+    <dd>🔗 <a href="https://docs.google.com/forms/d/e/1FAIpQLSfUbqs93_6FxPjQk4Xh-xVa7jUy0CsrFwmhjCuLTDpPiuF2qA/viewform">Googleフォームで申込</a></dd>
+    <dt>川崎市教育委員会</dt>
+    <dd>☎️ 044-200-3565（地域教育推進室・担当：浜崎）</dd>
+  </div>
+  <div class="updated">最終更新：2026年5月26日</div>
+</footer>
+
+</div>
+</body>
+</html>
