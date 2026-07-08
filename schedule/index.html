@@ -54,6 +54,21 @@
   /* スクロール時の見出し位置を補正（タブ分オフセット） */
   .month{margin:24px 0;scroll-margin-top:70px}
 
+  /* 🎨 特別体験活動バナー */
+  .special-banner{background:linear-gradient(135deg,#fef3c7 0%,#fce7f3 50%,#dbeafe 100%);border:2px solid #f59e0b;border-radius:12px;padding:16px 18px;margin:16px 0 24px;box-shadow:0 4px 12px rgba(245,158,11,0.15);scroll-margin-top:70px}
+  .special-banner .tag{display:inline-block;background:#f59e0b;color:#fff;font-size:12px;font-weight:700;padding:3px 10px;border-radius:999px;margin-bottom:8px}
+  .special-banner h3{margin:0 0 10px;font-size:18px;color:#7c2d12;background:none;padding:0;line-height:1.4}
+  .special-banner .meta{background:#fff;border-radius:8px;padding:10px 14px;margin:10px 0;font-size:14px;line-height:1.7}
+  .special-banner .meta .row{display:flex;gap:10px;align-items:flex-start;margin-bottom:4px}
+  .special-banner .meta .row:last-child{margin-bottom:0}
+  .special-banner .meta .label{font-weight:700;color:#7c2d12;min-width:60px}
+  .special-banner .open{background:#fef3c7;border-left:4px solid #d97706;padding:8px 12px;font-size:13px;color:#7c2d12;font-weight:600;border-radius:0 6px 6px 0;margin-top:10px}
+  @media (max-width:480px){
+    .special-banner{padding:14px}
+    .special-banner h3{font-size:16px}
+    .special-banner .meta{font-size:13px}
+  }
+
   .pill{display:inline-block;padding:3px 12px;border-radius:999px;font-weight:700;font-size:12px}
   .pill-a{background:var(--a);color:#1e3a8a}
   .pill-b{background:var(--b);color:#14532d}
@@ -131,6 +146,18 @@
   曜日：すべて<strong>水曜日</strong>開催／会場：虹ヶ丘小学校／終了後は基本、欠席確認・下校準備を行ってから下校します。
 </div>
 
+<!-- 🎨 特別体験活動バナー -->
+<aside class="special-banner" id="event-nurie" aria-label="特別体験活動">
+  <span class="tag">🎨 特別体験活動（リトルプラネット協賛）</span>
+  <h3>にじがおか美術館 連携企画<br>「当たり前って何？」色覚異常のアーティストと一緒に、親子で塗り絵体験！</h3>
+  <div class="meta">
+    <div class="row"><span class="label">📅 日時</span><span><strong>8月21日（金）・8月30日（土）</strong>／両日 <strong>10:00〜12:00</strong>（2日間連続開催）</span></div>
+    <div class="row"><span class="label">🏫 会場</span><span>虹ヶ丘小学校</span></div>
+    <div class="row"><span class="label">🎒 対象</span><span>親子でご参加ください</span></div>
+  </div>
+  <div class="open">✨ 学習支援にお申込みでない児童も参加できます。詳細は追ってご案内します。</div>
+</aside>
+
 <h2>区分の見方</h2>
 <div class="legend">
   <div class="legend-item">
@@ -193,6 +220,7 @@
     <span class="label">ジャンプ →</span>
     <a href="#m6">6月</a>
     <a href="#m7">7月</a>
+    <a href="#m8" style="background:#fef3c7;border-color:#f59e0b;color:#7c2d12">🎨 8月</a>
     <a href="#m9">9月</a>
     <a href="#m10">10月</a>
     <a href="#m11">11月</a>
@@ -277,6 +305,48 @@
         <div class="time">14:10–15:10</div>
       </div>
     </div>
+  </div>
+</div>
+
+<!-- 8月：特別体験活動 -->
+<div class="month" id="m8">
+  <h3>8月 🎨 特別体験活動</h3>
+
+  <div class="day" style="border:2px solid #f59e0b;background:linear-gradient(135deg,#fffbeb,#fff)">
+    <div class="head">
+      <span class="date">8/21（金）</span>
+      <span class="pill" style="background:#fef3c7;color:#7c2d12">体験</span>
+      <span class="event">リトルプラネット協賛イベント（Day 1）</span>
+    </div>
+    <div style="padding:8px 0 4px;font-weight:700;color:#7c2d12">🎨 にじがおか美術館 連携企画<br>「当たり前って何？」色覚異常のアーティストと親子で塗り絵体験</div>
+    <div class="slots-row">
+      <div class="slot-box" data-grades="5" style="border-color:#f59e0b;background:#fef3c7;color:#7c2d12">
+        <div class="grades-row"><span class="grade">親子</span><span class="grade">2年</span><span class="grade">3年</span><span class="grade">4年</span><span class="grade">5年</span><span class="grade">6年</span></div>
+        <div class="time">10:00–12:00</div>
+      </div>
+    </div>
+    <div class="open" style="background:#fef3c7;border-left:4px solid #d97706;padding:8px 12px;font-size:13px;color:#7c2d12;font-weight:600;border-radius:0 6px 6px 0;margin-top:10px">✨ 学習支援にお申込みでない児童も参加可能</div>
+  </div>
+
+  <div class="day" style="border:2px solid #f59e0b;background:linear-gradient(135deg,#fffbeb,#fff)">
+    <div class="head">
+      <span class="date">8/30（土）</span>
+      <span class="pill" style="background:#fef3c7;color:#7c2d12">体験</span>
+      <span class="event">リトルプラネット協賛イベント（Day 2）</span>
+    </div>
+    <div style="padding:8px 0 4px;font-weight:700;color:#7c2d12">🎨 にじがおか美術館 連携企画<br>「当たり前って何？」色覚異常のアーティストと親子で塗り絵体験</div>
+    <div class="slots-row">
+      <div class="slot-box" data-grades="5" style="border-color:#f59e0b;background:#fef3c7;color:#7c2d12">
+        <div class="grades-row"><span class="grade">親子</span><span class="grade">2年</span><span class="grade">3年</span><span class="grade">4年</span><span class="grade">5年</span><span class="grade">6年</span></div>
+        <div class="time">10:00–12:00</div>
+      </div>
+    </div>
+    <div class="open" style="background:#fef3c7;border-left:4px solid #d97706;padding:8px 12px;font-size:13px;color:#7c2d12;font-weight:600;border-radius:0 6px 6px 0;margin-top:10px">✨ 学習支援にお申込みでない児童も参加可能</div>
+  </div>
+
+  <div class="note" style="margin-top:12px">
+    詳細（申込方法・持ち物など）は、追ってご案内いたします。<br>
+    2日間連続の企画ですが、可能であれば両日ご参加ください。
   </div>
 </div>
 
