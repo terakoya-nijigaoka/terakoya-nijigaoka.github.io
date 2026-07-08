@@ -1,0 +1,535 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="寺子屋にじがおか 夏の特別体験『未来の遊びを作ろう！』寺子屋にじがおか×リトルプラネット社 共催。自分で描いた絵がゲームの中で動き出す2日間プログラム。8/21金・8/29土 9:30-12:00頃、虹ヶ丘こども文化センターで開催。参加無料・4〜6年生対象。">
+<title>未来の遊びを作ろう！｜寺子屋にじがおか 夏の特別体験</title>
+<link rel="icon" type="image/png" href="../_assets/logo.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Mochiy+Pop+One&family=Zen+Maru+Gothic:wght@500;700;900&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --cream:#FFFDF4;
+    --paper:#FFF8E7;
+    --ink:#33302E;
+    --sub:#6B645C;
+    --blue:#3D7BFF;
+    --blue-deep:#1E4FD6;
+    --pink:#FF6FA5;
+    --yellow:#FFC83D;
+    --green:#3FC48A;
+    --orange:#FF8A3D;
+    --radius-lg:28px;
+    --radius-md:18px;
+    --font-pop:'Mochiy Pop One',sans-serif;
+    --font-body:'Zen Maru Gothic',sans-serif;
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{margin:0;background:var(--cream);color:var(--ink);font-family:var(--font-body);font-weight:500;line-height:1.85;-webkit-text-size-adjust:100%;overflow-x:hidden}
+  img{max-width:100%}
+  a{color:var(--blue-deep)}
+
+  /* ============ ヒーロー ============ */
+  .hero{position:relative;padding:52px 20px 90px;text-align:center;background:
+    radial-gradient(circle at 12% 20%, rgba(255,200,61,0.22) 0 90px, transparent 90px),
+    radial-gradient(circle at 88% 12%, rgba(255,111,165,0.18) 0 70px, transparent 70px),
+    radial-gradient(circle at 82% 78%, rgba(63,196,138,0.16) 0 110px, transparent 110px),
+    radial-gradient(circle at 8% 85%, rgba(61,123,255,0.14) 0 80px, transparent 80px),
+    var(--cream);
+    overflow:hidden}
+  /* 浮遊するコンフェッティ */
+  .confetti{position:absolute;font-size:22px;opacity:0;animation:floaty 7s ease-in-out infinite;pointer-events:none}
+  @keyframes floaty{
+    0%,100%{transform:translateY(0) rotate(-8deg);opacity:.55}
+    50%{transform:translateY(-22px) rotate(10deg);opacity:.9}
+  }
+  .hero .logo{width:60px;height:60px;border-radius:14px;box-shadow:0 4px 0 rgba(51,48,46,0.12)}
+  .hero .badge{display:inline-block;background:#fff;border:2.5px solid var(--ink);border-radius:999px;padding:6px 20px;font-size:13px;font-weight:700;margin:16px 0 8px;box-shadow:3px 3px 0 var(--yellow);transform:rotate(-1.5deg)}
+  .hero h1{font-family:var(--font-pop);font-weight:400;font-size:clamp(30px,8.5vw,52px);line-height:1.3;margin:14px 0 4px;letter-spacing:.02em}
+  .hero h1 .line1{display:block;font-size:.55em;color:var(--sub);letter-spacing:.08em}
+  .hero h1 .kimi{color:var(--blue)}
+  .hero h1 .ugoki{background:linear-gradient(transparent 62%,var(--yellow) 62%)}
+  .hero .catch{font-size:clamp(14px,3.8vw,17px);font-weight:900;margin:14px auto 0;max-width:520px}
+  .hero .catch b{color:var(--pink)}
+
+  /* 手描き→ゲーム変身モチーフ */
+  .transform-strip{display:flex;align-items:center;justify-content:center;gap:14px;margin:30px auto 0;max-width:460px}
+  .t-panel{background:#fff;border:2.5px solid var(--ink);border-radius:var(--radius-md);padding:12px 10px 8px;width:150px;position:relative}
+  .t-panel .cap{font-size:11px;font-weight:700;color:var(--sub);margin-top:4px}
+  .t-panel.paper{transform:rotate(-3deg);box-shadow:4px 4px 0 rgba(255,111,165,0.35)}
+  .t-panel.game{transform:rotate(2.5deg);box-shadow:4px 4px 0 rgba(61,123,255,0.35);background:#12122A;border-color:#12122A}
+  .t-panel.game .cap{color:#9FB4FF}
+  .t-arrow{font-family:var(--font-pop);font-size:26px;color:var(--orange);animation:nudge 1.2s ease-in-out infinite}
+  @keyframes nudge{0%,100%{transform:translateX(0)}50%{transform:translateX(7px)}}
+  .doodle{width:100%;height:auto;display:block}
+  /* ゲーム内でスポーツカーが走る＆路面が流れる */
+  .car-drive{animation:drive 1.6s ease-in-out infinite}
+  @keyframes drive{
+    0%,100%{transform:translateX(-6px) translateY(0)}
+    25%{transform:translateX(0) translateY(-1.5px)}
+    50%{transform:translateX(6px) translateY(0)}
+    75%{transform:translateX(0) translateY(-1.5px)}
+  }
+  .road-dash{animation:roaddash .5s linear infinite}
+  @keyframes roaddash{from{transform:translateX(0)}to{transform:translateX(-16px)}}
+
+  /* ヒーローCTA */
+  .hero-cta{display:inline-block;margin-top:26px;font-family:var(--font-pop);font-size:16px;background:var(--yellow);color:var(--ink);padding:15px 38px;border-radius:999px;border:2.5px solid var(--ink);text-decoration:none;box-shadow:0 5px 0 var(--ink);transition:transform .15s,box-shadow .15s}
+  .hero-cta:hover{transform:translateY(-3px);box-shadow:0 8px 0 var(--ink)}
+  .hero-cta small{display:block;font-family:var(--font-body);font-size:11px;font-weight:700;color:var(--sub)}
+
+  /* ============ FAQ ============ */
+  .faq{display:flex;flex-direction:column;gap:12px;margin-top:8px}
+  .faq details{background:#fff;border:2.5px solid var(--ink);border-radius:var(--radius-md);overflow:hidden}
+  .faq summary{cursor:pointer;list-style:none;padding:14px 18px;font-weight:900;font-size:14.5px;display:flex;align-items:center;gap:10px;user-select:none}
+  .faq summary::-webkit-details-marker{display:none}
+  .faq summary .q{flex-shrink:0;font-family:var(--font-pop);color:#fff;background:var(--blue);width:28px;height:28px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:14px}
+  .faq summary::after{content:"＋";margin-left:auto;font-family:var(--font-pop);font-size:18px;color:var(--blue);transition:transform .2s}
+  .faq details[open] summary::after{transform:rotate(45deg)}
+  .faq details[open] summary{border-bottom:2px dashed #F0EADB}
+  .faq .a{padding:12px 18px 16px 56px;font-size:13.5px}
+  .faq .a p{margin:0 0 8px}
+  .faq .a p:last-child{margin-bottom:0}
+  .faq .a a{font-weight:900}
+
+  /* ============ お手伝い募集 ============ */
+  .helper{margin-top:18px;background:#fff;border:2.5px dashed var(--green);border-radius:var(--radius-lg);padding:18px 20px;display:flex;gap:14px;align-items:flex-start}
+  .helper .hic{font-size:32px;flex-shrink:0}
+  .helper h3{margin:0 0 4px;font-family:var(--font-pop);font-weight:400;font-size:16px;color:#1D7A55}
+  .helper p{margin:0;font-size:13.5px}
+
+  /* ============ マーキー ============ */
+  .marquee{background:var(--blue);color:#fff;font-family:var(--font-pop);font-size:15px;padding:10px 0;overflow:hidden;white-space:nowrap;border-top:2.5px solid var(--ink);border-bottom:2.5px solid var(--ink)}
+  .marquee .track{display:inline-block;animation:scrollx 22s linear infinite}
+  @keyframes scrollx{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+  .marquee span{margin:0 18px}
+
+  .wrap{max-width:640px;margin:0 auto;padding:0 18px 70px}
+
+  /* ============ 日程ボード ============ */
+  .board{background:#fff;border:2.5px solid var(--ink);border-radius:var(--radius-lg);padding:22px 20px 18px;margin:-46px auto 0;position:relative;z-index:2;box-shadow:0 8px 0 rgba(51,48,46,0.1)}
+  .board::before{content:"📌";position:absolute;top:-16px;left:50%;transform:translateX(-50%);font-size:26px}
+  .board .dates{display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
+  .d-chip{flex:1;min-width:130px;max-width:200px;text-align:center;border-radius:var(--radius-md);padding:12px 8px;border:2.5px solid var(--ink)}
+  .d-chip.d1{background:var(--yellow);transform:rotate(-1.2deg)}
+  .d-chip.d2{background:var(--green);transform:rotate(1.2deg);color:#fff}
+  .d-chip .dd{font-family:var(--font-pop);font-size:22px;line-height:1.2}
+  .d-chip .dl{font-size:11px;font-weight:700;opacity:.8}
+  .d-chip .tt{font-size:14px;font-weight:900;margin-top:2px}
+  .board .facts{display:flex;justify-content:center;gap:6px 18px;flex-wrap:wrap;margin-top:14px;font-size:13.5px;font-weight:700}
+  .board .facts span{white-space:nowrap}
+  .board .free{color:var(--pink)}
+
+  /* ============ 見出し ============ */
+  h2.sec{font-family:var(--font-pop);font-weight:400;font-size:clamp(21px,5.5vw,26px);text-align:center;margin:56px 0 6px;position:relative}
+  h2.sec .em{background:linear-gradient(transparent 60%,rgba(255,200,61,.75) 60%)}
+  p.sec-sub{text-align:center;font-size:13px;color:var(--sub);font-weight:700;margin:0 0 22px}
+
+  /* ============ 3ステップ ============ */
+  .steps{display:flex;flex-direction:column;gap:18px}
+  .step{background:#fff;border:2.5px solid var(--ink);border-radius:var(--radius-lg);padding:18px 20px 16px;position:relative}
+  .step:nth-child(1){transform:rotate(-.7deg);box-shadow:5px 5px 0 rgba(255,111,165,.3)}
+  .step:nth-child(2){transform:rotate(.6deg);box-shadow:5px 5px 0 rgba(255,200,61,.4)}
+  .step:nth-child(3){transform:rotate(-.5deg);box-shadow:5px 5px 0 rgba(61,123,255,.3)}
+  .step .tape{position:absolute;top:-12px;left:26px;width:70px;height:22px;background:rgba(255,200,61,.6);transform:rotate(-4deg);border-radius:3px}
+  .step:nth-child(2) .tape{background:rgba(63,196,138,.5);left:auto;right:26px;transform:rotate(4deg)}
+  .step:nth-child(3) .tape{background:rgba(255,111,165,.45)}
+  .step .head{display:flex;align-items:center;gap:12px}
+  .step .n{font-family:var(--font-pop);font-size:15px;background:var(--ink);color:#fff;border-radius:50%;width:34px;height:34px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+  .step h3{font-family:var(--font-pop);font-weight:400;font-size:18px;margin:0}
+  .step p{margin:8px 0 0;font-size:14px}
+  .step .kids{margin-top:10px;background:var(--paper);border-radius:12px;padding:8px 14px;font-size:13px;font-weight:700;display:inline-block}
+  .step .kids::before{content:"💬 "}
+
+  /* ============ 2日間の流れ ============ */
+  .days{display:flex;flex-direction:column;gap:0;margin-top:6px}
+  .dayblock{background:#fff;border:2.5px solid var(--ink);border-radius:var(--radius-lg);padding:18px 20px;position:relative}
+  .dayblock.dy1{box-shadow:5px 5px 0 rgba(255,200,61,.4)}
+  .dayblock.dy2{box-shadow:5px 5px 0 rgba(63,196,138,.35)}
+  .day-conn{text-align:center;font-family:var(--font-pop);color:var(--sub);font-size:13px;padding:10px 0;position:relative}
+  .day-conn::before{content:"";position:absolute;left:50%;top:0;bottom:0;width:3px;background:repeating-linear-gradient(to bottom,var(--ink) 0 6px,transparent 6px 12px);transform:translateX(-50%);z-index:-1}
+  .day-conn span{background:var(--cream);padding:2px 12px}
+  .dayblock .dtag{position:absolute;top:-14px;left:20px;font-family:var(--font-pop);font-size:13px;color:#fff;padding:4px 16px;border-radius:999px;border:2.5px solid var(--ink)}
+  .dy1 .dtag{background:var(--orange)}
+  .dy2 .dtag{background:var(--green)}
+  .dayblock h3{font-family:var(--font-pop);font-weight:400;font-size:17px;margin:6px 0 8px}
+  .dayblock ul{margin:0;padding-left:0;list-style:none}
+  .dayblock li{font-size:14px;padding:7px 0 7px 30px;position:relative;border-bottom:2px dashed #F0EADB}
+  .dayblock li:last-child{border-bottom:none}
+  .dayblock li::before{content:"▶";position:absolute;left:6px;font-size:11px;color:var(--blue)}
+  .dayblock li b{font-weight:900}
+  /* フィナーレ */
+  .finale{margin-top:16px;background:linear-gradient(135deg,#FFF3D6,#FFE3EF);border:2.5px solid var(--ink);border-radius:var(--radius-lg);padding:20px;text-align:center;box-shadow:5px 5px 0 rgba(255,111,165,.3)}
+  .finale .ftag{display:inline-block;font-size:12px;font-weight:900;background:var(--pink);color:#fff;border-radius:999px;padding:4px 16px;margin-bottom:8px}
+  .finale h3{font-family:var(--font-pop);font-weight:400;font-size:19px;margin:4px 0 8px}
+  .finale h3 .em{background:linear-gradient(transparent 60%,rgba(255,200,61,.8) 60%)}
+  .finale p{font-size:13.5px;margin:0;text-align:left}
+
+  /* ============ 子ども視点吹き出し ============ */
+  .bubbles{display:flex;flex-direction:column;gap:14px;margin-top:10px}
+  .bub{max-width:82%;background:#fff;border:2.5px solid var(--ink);border-radius:20px;padding:12px 18px;font-weight:900;font-size:15px;position:relative}
+  .bub.l{align-self:flex-start;border-bottom-left-radius:4px;transform:rotate(-.8deg);background:#EAF1FF}
+  .bub.r{align-self:flex-end;border-bottom-right-radius:4px;transform:rotate(.8deg);background:#FFEFF5}
+  .bub .who{display:block;font-size:11px;color:var(--sub);font-weight:700;margin-top:2px}
+
+  /* ============ 保護者向け価値 ============ */
+  .parent-note{background:#fff;border:2.5px solid var(--ink);border-radius:var(--radius-lg);overflow:hidden;margin-top:8px}
+  .parent-note .ph{background:var(--ink);color:#fff;padding:12px 20px;font-weight:900;font-size:14px}
+  .parent-note .ph::before{content:"👪 ";}
+  .pv-list{padding:6px 20px 18px}
+  .pv{display:flex;gap:14px;padding:14px 0;border-bottom:2px dashed #E8E2D6;align-items:flex-start}
+  .pv:last-child{border-bottom:none}
+  .pv .ic{font-size:26px;flex-shrink:0;width:40px;height:40px;display:flex;align-items:center;justify-content:center;border-radius:12px}
+  .pv:nth-child(1) .ic{background:#EAF1FF}
+  .pv:nth-child(2) .ic{background:#FFF3D6}
+  .pv:nth-child(3) .ic{background:#E6F7EF}
+  .pv:nth-child(4) .ic{background:#FFEFF5}
+  .pv h4{margin:0 0 2px;font-size:15px;font-weight:900}
+  .pv p{margin:0;font-size:13px;color:var(--sub)}
+
+  /* 信頼バー */
+  .trust{display:flex;gap:10px;margin-top:18px;flex-wrap:wrap}
+  .trust .t-item{flex:1;min-width:150px;background:var(--paper);border:2px solid rgba(51,48,46,.15);border-radius:var(--radius-md);padding:12px 14px;font-size:12.5px;font-weight:700;line-height:1.6}
+  .trust .t-item b{display:block;font-size:13px;color:var(--blue-deep)}
+
+  /* ============ 概要 ============ */
+  .overview{background:#fff;border:2.5px solid var(--ink);border-radius:var(--radius-lg);overflow:hidden;margin-top:8px}
+  .overview dl{margin:0;display:grid;grid-template-columns:104px 1fr}
+  .overview dt{background:var(--paper);padding:13px 14px;font-weight:900;font-size:13px;border-bottom:2px dashed #E8E2D6;display:flex;align-items:center}
+  .overview dd{margin:0;padding:13px 16px;font-size:14px;border-bottom:2px dashed #E8E2D6}
+  .overview dt:last-of-type,.overview dd:last-of-type{border-bottom:none}
+  .overview small{color:var(--sub)}
+
+  /* ============ CTA ============ */
+  .cta{margin-top:56px;background:var(--ink);border-radius:var(--radius-lg);padding:34px 24px;text-align:center;color:#fff;position:relative;overflow:hidden}
+  .cta::before{content:"";position:absolute;inset:8px;border:2px dashed rgba(255,255,255,.35);border-radius:20px;pointer-events:none}
+  .cta h2{font-family:var(--font-pop);font-weight:400;font-size:22px;margin:0 0 6px}
+  .cta p{font-size:13px;opacity:.85;margin:0 0 20px}
+  .cta .lott{display:inline-block;background:var(--pink);color:#fff;font-size:12px;font-weight:900;border-radius:999px;padding:4px 14px;margin-bottom:14px}
+  /* TODO: Googleフォーム完成後 .prep を <a class="btn" href="フォームURL"> に差し替え */
+  .cta .btn,.cta .prep{display:inline-block;font-family:var(--font-pop);font-size:17px;padding:16px 42px;border-radius:999px;text-decoration:none}
+  .cta .btn{background:var(--yellow);color:var(--ink);box-shadow:0 6px 0 #C79412;transition:transform .15s}
+  .cta .btn:hover{transform:translateY(-3px)}
+  .cta .prep{background:rgba(255,255,255,.12);border:2px dashed rgba(255,255,255,.55);color:#fff;font-size:15px}
+
+  footer{margin-top:44px;padding-top:22px;border-top:2.5px solid var(--ink);font-size:13px}
+  footer .fname{font-weight:900;font-size:14px}
+  footer a{display:inline-block;margin-top:4px}
+
+  /* スクロールリビール */
+  .rv{opacity:0;transform:translateY(26px);transition:opacity .5s ease-out,transform .5s ease-out}
+  .rv.on{opacity:1;transform:none}
+
+  @media (max-width:430px){
+    .transform-strip{gap:8px}
+    .t-panel{width:128px}
+    .overview dl{grid-template-columns:92px 1fr}
+  }
+  @media (prefers-reduced-motion:reduce){
+    *{animation:none!important;transition:none!important}
+    .rv{opacity:1;transform:none}
+  }
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <span class="confetti" style="top:14%;left:8%;animation-delay:0s">🟡</span>
+  <span class="confetti" style="top:24%;right:10%;animation-delay:1.4s">🔺</span>
+  <span class="confetti" style="top:62%;left:5%;animation-delay:2.2s">✏️</span>
+  <span class="confetti" style="top:70%;right:7%;animation-delay:.8s">🎮</span>
+  <span class="confetti" style="top:44%;right:16%;animation-delay:3s">⭐</span>
+
+  <img src="../_assets/logo.png" alt="寺子屋にじがおか" class="logo"><br>
+  <span class="badge">🌟 夏の特別体験 ｜ 寺子屋にじがおか × リトルプラネット社 共催</span>
+  <h1>
+    <span class="line1">未来の遊びを作ろう！</span>
+    <span class="kimi">きみの絵</span>が、ゲームの中で<br><span class="ugoki">動き出す。</span>
+  </h1>
+  <p class="catch">あそぶ側から、<b>つくる側へ</b>。<br>この夏、いちばんワクワクする2日間。</p>
+
+  <div class="transform-strip" aria-hidden="true">
+    <div class="t-panel paper">
+      <!-- 手描き（クレヨン風）スポーツカー -->
+      <svg class="doodle" viewBox="0 0 100 80">
+        <!-- ボディ：クレヨンの点線タッチ -->
+        <path d="M12 52 L18 42 Q24 34 36 32 L44 24 Q50 20 60 22 L70 30 Q84 33 88 44 L90 52 Q90 56 84 56 L18 56 Q12 56 12 52Z"
+              fill="none" stroke="#FF6FA5" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="3 5"/>
+        <!-- 窓 -->
+        <path d="M46 28 L42 34 L58 34 L54 27Z" fill="none" stroke="#3D7BFF" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+        <!-- タイヤ（手描きぐるぐる風） -->
+        <circle cx="30" cy="58" r="8" fill="none" stroke="#33302E" stroke-width="3.5" stroke-dasharray="3 4"/>
+        <circle cx="72" cy="58" r="8" fill="none" stroke="#33302E" stroke-width="3.5" stroke-dasharray="3 4"/>
+        <!-- スピード線 -->
+        <path d="M6 38 L14 38 M4 46 L12 46" stroke="#FFC83D" stroke-width="3.5" stroke-linecap="round"/>
+      </svg>
+      <div class="cap">✏️ かみに かいた スポーツカー</div>
+    </div>
+    <div class="t-arrow">➜➜</div>
+    <div class="t-panel game">
+      <!-- ゲーム画面の中を走るスポーツカー -->
+      <svg class="doodle" viewBox="0 0 100 80">
+        <rect x="6" y="6" width="88" height="68" rx="6" fill="#1B1B3F"/>
+        <!-- 道路 -->
+        <rect x="10" y="54" width="80" height="16" fill="#3A3A5C"/>
+        <g class="road-dash">
+          <rect x="14" y="61" width="10" height="3" fill="#FFC83D"/>
+          <rect x="30" y="61" width="10" height="3" fill="#FFC83D"/>
+          <rect x="46" y="61" width="10" height="3" fill="#FFC83D"/>
+          <rect x="62" y="61" width="10" height="3" fill="#FFC83D"/>
+          <rect x="78" y="61" width="10" height="3" fill="#FFC83D"/>
+        </g>
+        <!-- 走るスポーツカー -->
+        <g class="car-drive">
+          <path d="M24 52 L28 45 Q32 39 41 38 L47 32 Q51 29 58 30 L65 36 Q74 38 77 45 L78 52 Q78 55 74 55 L28 55 Q24 55 24 52Z" fill="#FF6FA5"/>
+          <path d="M48 33 L45 38 L58 38 L54 32Z" fill="#9FD8FF"/>
+          <circle cx="35" cy="55" r="5.5" fill="#12122A" stroke="#fff" stroke-width="1.5"/>
+          <circle cx="67" cy="55" r="5.5" fill="#12122A" stroke="#fff" stroke-width="1.5"/>
+          <!-- スピード線 -->
+          <path d="M14 42 L21 42 M12 48 L19 48" stroke="#FFC83D" stroke-width="2.5" stroke-linecap="round"/>
+        </g>
+        <!-- キラキラ -->
+        <path d="M20 16 h5 v5 h-5z M78 22 h4 v4 h-4z M70 12 h4 v4 h-4z" fill="#FFC83D"/>
+      </svg>
+      <div class="cap">🎮 ゲームの なかを 走ってる！</div>
+    </div>
+  </div>
+
+  <a class="hero-cta" href="#apply">📝 参加申込みへ<small>定員あり・申込み多数の場合は抽選</small></a>
+</header>
+
+<div class="marquee" aria-hidden="true">
+  <div class="track">
+    <span>PLAY!</span><span>✏️ DRAW</span><span>🪄 SCAN</span><span>🎮 GO!</span><span>⭐ CREATE</span><span>みらいの あそびを つくろう</span>
+    <span>PLAY!</span><span>✏️ DRAW</span><span>🪄 SCAN</span><span>🎮 GO!</span><span>⭐ CREATE</span><span>みらいの あそびを つくろう</span>
+  </div>
+</div>
+
+<main class="wrap">
+
+<!-- 日程ボード -->
+<section class="board" aria-label="開催日程">
+  <div class="dates">
+    <div class="d-chip d1">
+      <div class="dl">DAY 1</div>
+      <div class="dd">8/21<small>（金）</small></div>
+      <div class="tt">9:30〜12:00頃</div>
+    </div>
+    <div class="d-chip d2">
+      <div class="dl">DAY 2</div>
+      <div class="dd">8/29<small>（土）</small></div>
+      <div class="tt">9:30〜12:00頃</div>
+    </div>
+  </div>
+  <div class="facts">
+    <span>🏫 虹ヶ丘こども文化センター</span>
+    <span>🎒 4〜6年生</span>
+    <span class="free">💰 参加無料</span>
+    <span>✨ 寺子屋申込みがなくてもOK</span>
+  </div>
+</section>
+
+<!-- どんな体験？ -->
+<h2 class="sec rv"><span class="em">どんな体験？</span></h2>
+<p class="sec-sub rv">3つのステップで、きみの絵がゲームになる</p>
+
+<div class="steps">
+  <div class="step rv">
+    <div class="tape"></div>
+    <div class="head"><span class="n">1</span><h3>✏️ かく</h3></div>
+    <p>自分だけのキャラクターや乗りものを、紙に自由に描きます。上手じゃなくて大丈夫。<strong>「自分で考えた」が一番かっこいい</strong>。</p>
+    <span class="kids">なに かこうかな？ さいきょうの モンスター！</span>
+  </div>
+  <div class="step rv">
+    <div class="tape"></div>
+    <div class="head"><span class="n">2</span><h3>🪄 とりこむ</h3></div>
+    <p>描いた絵をスキャンすると……画面の中に自分の絵が登場！ 全国のテーマパークで使われている<strong>本物の機材</strong>を使います。</p>
+    <span class="kids">えっ、ほんとに でてきた！！</span>
+  </div>
+  <div class="step rv">
+    <div class="tape"></div>
+    <div class="head"><span class="n">3</span><h3>🎮 うごかす・あそぶ</h3></div>
+    <p>自分の絵がゲームの中で走る、飛ぶ、動く！ 友だちの作品と一緒に、みんなで<strong>オリジナルのゲーム世界</strong>を作ります。</p>
+    <span class="kids">ぼくの と きみの、どっちが はやい？</span>
+  </div>
+</div>
+
+<!-- 2日間の流れ -->
+<h2 class="sec rv"><span class="em">2日間の流れ</span></h2>
+<p class="sec-sub rv">1日目で「つくって遊ぶ」、2日目で「遊びを進化させて、未来を考える」</p>
+
+<div class="days">
+  <div class="dayblock dy1 rv">
+    <span class="dtag">DAY 1｜8/21（金）</span>
+    <h3>✏️ きみの絵が、ゲームになる日</h3>
+    <ul>
+      <li><b>かく</b> — 自分だけのキャラクター・乗りものをデザイン</li>
+      <li><b>とりこむ</b> — スキャンして、デジタル世界にデビュー！</li>
+      <li><b>あそぶ</b> — みんなの作品が集まったゲーム世界で遊びまくる</li>
+    </ul>
+  </div>
+
+  <div class="day-conn"><span>1週間で「もっとこうしたい！」を考えてこよう</span></div>
+
+  <div class="dayblock dy2 rv">
+    <span class="dtag">DAY 2｜8/29（土）</span>
+    <h3>🚀 遊びを進化させる日</h3>
+    <ul>
+      <li><b>パワーアップ</b> — Day1のアイデアをもとに、作品や遊び方をバージョンアップ</li>
+      <li><b>あそびこむ</b> — 進化したゲーム世界を、みんなで遊びつくす</li>
+    </ul>
+  </div>
+
+  <div class="finale rv">
+    <span class="ftag">🌈 2日間のフィナーレ</span>
+    <h3>「<span class="em">未来の遊び</span>」をみんなで考える時間</h3>
+    <p>最後は、テーマパークを作っているプロと一緒に、「こんな遊びがあったらいいな」をみんなで考えるアイデア会議。子どもたちの発想が、本当に未来のアトラクションになるかも——。あそぶ側から、つくる側へ。その第一歩です。</p>
+  </div>
+</div>
+
+<!-- 子どもの声（想定） -->
+<h2 class="sec rv">きっと、<span class="em">こうなる。</span></h2>
+<p class="sec-sub rv">体験した子どもたちの姿（イメージ）</p>
+<div class="bubbles">
+  <div class="bub l rv">「じぶんの えが うごいた！！」<span class="who">— はじめて自分の作品がデジタルになった瞬間</span></div>
+  <div class="bub r rv">「つぎは こんな あそびを つくりたい！」<span class="who">— あそぶ側から、つくる側になった瞬間</span></div>
+  <div class="bub l rv">「ゲームって、どうやって できてるの？」<span class="who">— テクノロジーへの興味が生まれた瞬間</span></div>
+</div>
+
+<!-- 保護者向け -->
+<h2 class="sec rv">保護者の皆さまへ<br><span class="em">この2日間で育つもの</span></h2>
+<p class="sec-sub rv">「デジタルで遊ばせる」ではなく「デジタルで創らせる」体験です</p>
+
+<div class="parent-note rv">
+  <div class="ph">寺子屋にじがおか×リトルプラネット社の共同企画として設計しました</div>
+  <div class="pv-list">
+    <div class="pv">
+      <span class="ic">🎨</span>
+      <div>
+        <h4>創造力 — 白い紙から始まる</h4>
+        <p>お手本なし。ゼロから「こんなのがいたら面白い」を形にする発想の体験です。</p>
+      </div>
+    </div>
+    <div class="pv">
+      <span class="ic">💻</span>
+      <div>
+        <h4>テクノロジーへの入口</h4>
+        <p>ゲームを「与えられて遊ぶもの」から「自分でつくれるもの」へ。身の回りの技術に興味を持つきっかけを作ります。</p>
+      </div>
+    </div>
+    <div class="pv">
+      <span class="ic">🤝</span>
+      <div>
+        <h4>協働する力</h4>
+        <p>一人ひとりの作品が、ひとつのゲーム世界に集まる。友だちと一緒に世界を作る経験です。</p>
+      </div>
+    </div>
+    <div class="pv">
+      <span class="ic">✨</span>
+      <div>
+        <h4>自己肯定感 — 「自分の作品が動いた！」</h4>
+        <p>絵の上手い下手に関係なく、全員が主役になれる成功体験。2日間の連続プログラムだから、達成感もひとしおです。</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="trust rv">
+  <div class="t-item"><b>全国で人気のプロの機材</b>デジタルテーマパーク「リトルプラネット」を全国で運営する会社の本格アトラクション機材が、学校にやってきます。</div>
+  <div class="t-item"><b>安心の開催体制</b>川崎市の地域寺子屋事業（寺子屋にじがおか）の活動として、地域の虹ヶ丘こども文化センターで開催します。</div>
+</div>
+
+<!-- 概要 -->
+<h2 class="sec rv"><span class="em">開催概要</span></h2>
+<div class="overview rv">
+  <dl>
+    <dt>📅 日程</dt>
+    <dd><strong>8月21日（金）・8月29日（土）</strong><br><small>2日間で1つの連続プログラム。両日参加できる方を優先してご案内します</small></dd>
+    <dt>🕘 時間</dt>
+    <dd>両日とも 9:30〜12:00頃<br><small>※時間は前後することがあります</small></dd>
+    <dt>🏫 会場</dt>
+    <dd>虹ヶ丘こども文化センター</dd>
+    <dt>🎒 対象</dt>
+    <dd>虹ヶ丘小学校 4〜6年生<br><small>✨ 寺子屋（学習支援）にお申込みでない児童も参加できます</small></dd>
+    <dt>💰 参加費</dt>
+    <dd>無料</dd>
+    <dt>💻 持ち物</dt>
+    <dd>学校で使用しているGIGA端末<br><small>そのほかの持ち物は、お申込みいただいた方にご案内します</small></dd>
+    <dt>👥 定員</dt>
+    <dd>定員あり<br><small>お申込み多数の場合は抽選となります</small></dd>
+    <dt>🏢 共催</dt>
+    <dd>寺子屋にじがおか／リトルプラネット社<br><small>リトルプラネット社は全国でデジタルテーマパーク「リトルプラネット」を運営</small></dd>
+    <dt>🤝 後援</dt>
+    <dd>虹ヶ丘こども文化センター</dd>
+  </dl>
+</div>
+
+<!-- FAQ -->
+<h2 class="sec rv">よくある<span class="em">ご質問</span></h2>
+<div class="faq rv">
+  <details>
+    <summary><span class="q">Q</span>リトルプラネット社って、どんな会社？</summary>
+    <div class="a">
+      <p>「遊びが学びに変わる」をコンセプトに、全国でデジタルテーマパーク<strong>「リトルプラネット」</strong>を運営している会社です。砂遊びやお絵かきなど昔ながらの遊びを、AR（拡張現実）などの最新テクノロジーで進化させたアトラクションが人気です。</p>
+      <p>今回は、そのテーマパークで実際に使われている本格機材が会場にやってきます。</p>
+      <p>🔗 <a href="https://litpla.com/" target="_blank" rel="noopener">リトルプラネット公式サイトでアトラクションを見る</a></p>
+    </div>
+  </details>
+  <details>
+    <summary><span class="q">Q</span>寺子屋（学習支援）に申し込んでいなくても参加できますか？</summary>
+    <div class="a"><p>はい、参加できます。虹ヶ丘小学校の4〜6年生であれば、寺子屋へのお申込みの有無に関係なくご参加いただけます。</p></div>
+  </details>
+  <details>
+    <summary><span class="q">Q</span>絵が苦手でも大丈夫？</summary>
+    <div class="a"><p>大丈夫です！ 上手い下手はまったく関係ありません。「自分で考えて描いた」ことがそのままゲームになる体験なので、どんな絵でも主役になれます。</p></div>
+  </details>
+  <details>
+    <summary><span class="q">Q</span>1日だけの参加はできますか？</summary>
+    <div class="a"><p>2日間で1つのプログラムとして設計しているため、<strong>2日間とも参加できる方を優先</strong>してご参加いただく形になりますこと、ご了承ください。</p></div>
+  </details>
+  <details>
+    <summary><span class="q">Q</span>費用や持ち物は？</summary>
+    <div class="a"><p>参加費は<strong>無料</strong>です。持ち物として、<strong>学校で使用しているGIGA端末のご持参</strong>をお願いいたします。そのほか当日の詳しい流れは、お申込みいただいた方に追ってご案内します。</p></div>
+  </details>
+</div>
+
+<!-- お手伝い募集 -->
+<div class="helper rv">
+  <span class="hic">🙋</span>
+  <div>
+    <h3>当日のお手伝いをしてくださる方も募集します！</h3>
+    <p>受付や子どもたちのサポートなど、当日の運営をお手伝いいただける保護者・地域の方を募集しています。お子さんの参加と一緒にぜひ。ご興味のある方は <a href="mailto:info@terakoya-nijigaoka.com">info@terakoya-nijigaoka.com</a>（担当：前村）までお気軽にご連絡ください。</p>
+  </div>
+</div>
+
+<!-- CTA -->
+<section class="cta rv" id="apply">
+  <span class="lott">👥 定員あり・先着ではなく抽選です</span>
+  <h2>参加申込み</h2>
+  <p>持ち物・当日の流れ・抽選結果のご連絡方法は、お申込みいただいた方にご案内します。</p>
+  <!-- TODO: Googleフォーム完成後、下の span を <a class="btn" href="フォームURL">📝 申込みフォームへ</a> に差し替え -->
+  <span class="prep">📝 申込みフォームは近日公開</span>
+</section>
+
+<footer>
+  <span class="fname">寺子屋にじがおか 運営委員会</span><br>
+  📧 <a href="mailto:info@terakoya-nijigaoka.com">info@terakoya-nijigaoka.com</a>（担当：前村）<br>
+  🌐 <a href="https://terakoya-nijigaoka.com/">公式ホームページ</a><br>
+  <a href="../schedule/">📅 2026年度 開催時間予定を見る</a><br>
+  <a href="../">🏠 寺子屋にじがおか トップ</a>
+</footer>
+
+</main>
+
+<script>
+  // スクロールリビール
+  const io = new IntersectionObserver(es => es.forEach(e => {
+    if(e.isIntersecting){ e.target.classList.add('on'); io.unobserve(e.target); }
+  }), {threshold:.12});
+  document.querySelectorAll('.rv').forEach(el => io.observe(el));
+</script>
+</body>
+</html>
