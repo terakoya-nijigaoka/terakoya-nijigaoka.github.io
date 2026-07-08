@@ -34,8 +34,14 @@
   p.lead{margin:8px 0 16px;color:var(--sub);font-size:14px}
   .note{background:#fefce8;border-left:4px solid #ca8a04;padding:10px 12px;margin:12px 0;border-radius:0 6px 6px 0;font-size:13px;color:#713f12}
 
-  /* 凡例カード（区分の見方）— 各日の表示と同じ箱デザインで揃える */
-  .legend{background:var(--card);border:1px solid var(--line);border-radius:8px;padding:16px;margin:12px 0 24px}
+  /* 凡例カード（区分の見方）— 折りたたみ式トグル */
+  details.legend-toggle{background:var(--card);border:1.5px solid var(--line);border-radius:10px;margin:12px 0 24px;overflow:hidden}
+  details.legend-toggle summary{cursor:pointer;padding:14px 18px;background:#eef2ff;font-weight:700;color:var(--navy-deep);list-style:none;display:flex;align-items:center;gap:10px;font-size:15px;user-select:none}
+  details.legend-toggle summary::-webkit-details-marker{display:none}
+  details.legend-toggle summary::after{content:"▼";margin-left:auto;font-size:12px;color:var(--navy);transition:transform .2s}
+  details.legend-toggle[open] summary::after{transform:rotate(180deg)}
+  details.legend-toggle summary:hover{background:#dbeafe}
+  details.legend-toggle .legend-body{padding:8px 16px 16px}
   .legend-item{display:flex;align-items:center;gap:14px;padding:14px 0;border-bottom:1px dashed #e5e7eb}
   .legend-item:last-child{border-bottom:none}
   .legend-item .pill{flex-shrink:0;font-size:14px;padding:5px 14px}
@@ -43,13 +49,32 @@
   .legend-item .desc{font-size:14px;color:var(--sub);margin-bottom:8px;font-weight:600}
   .legend-item .slots-row{margin-top:0}
 
-  /* 月別ジャンプタブ */
-  .month-tabs{position:sticky;top:0;background:var(--bg);z-index:10;padding:10px 0;margin:0 -16px 16px;border-bottom:1px solid var(--line)}
-  .month-tabs .inner{display:flex;gap:6px;overflow-x:auto;padding:0 16px;-webkit-overflow-scrolling:touch;scrollbar-width:thin}
-  .month-tabs .inner::-webkit-scrollbar{height:4px}
-  .month-tabs a{flex-shrink:0;display:inline-block;padding:8px 14px;background:#fff;border:1.5px solid var(--line);border-radius:999px;color:var(--navy);text-decoration:none;font-weight:700;font-size:14px;white-space:nowrap;transition:all .15s}
-  .month-tabs a:hover,.month-tabs a:focus{background:var(--navy);color:#fff;border-color:var(--navy)}
-  .month-tabs .label{font-size:12px;color:var(--sub);font-weight:600;padding:8px 4px;flex-shrink:0}
+  /* 月別ジャンプ — 常時表示・視認性重視 */
+  .jump-section{background:var(--card);border:2px solid var(--navy);border-radius:12px;padding:14px 16px;margin:20px 0 24px;box-shadow:0 2px 8px rgba(30,58,138,0.08)}
+  .jump-section .title{display:flex;align-items:center;gap:8px;font-weight:700;color:var(--navy-deep);font-size:15px;margin-bottom:12px}
+  .jump-section .title .icon{font-size:20px}
+  .jump-section .hint{font-size:12px;color:var(--sub);font-weight:400;margin-left:auto}
+  .jump-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:8px}
+  .jump-grid a{display:flex;flex-direction:column;align-items:center;justify-content:center;padding:12px 4px;background:#f8fafc;border:1.5px solid var(--line);border-radius:8px;color:var(--navy);text-decoration:none;font-weight:700;font-size:15px;transition:all .15s;min-height:56px}
+  .jump-grid a:hover,.jump-grid a:focus{background:var(--navy);color:#fff;border-color:var(--navy);transform:translateY(-2px);box-shadow:0 4px 8px rgba(30,58,138,0.2)}
+  .jump-grid a.highlight{background:#fef3c7;border-color:#f59e0b;color:#7c2d12}
+  .jump-grid a.highlight:hover{background:#f59e0b;color:#fff;border-color:#f59e0b}
+  .jump-grid a small{font-size:10px;font-weight:600;margin-top:2px;opacity:0.7}
+
+  /* 上部固定のミニタブ（スクロール時のみ） */
+  .month-tabs{position:sticky;top:0;background:rgba(248,250,252,0.96);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);z-index:10;padding:8px 0;margin:0 -16px 0;border-bottom:1px solid var(--line);opacity:0;transform:translateY(-10px);transition:opacity .2s,transform .2s;pointer-events:none}
+  .month-tabs.visible{opacity:1;transform:translateY(0);pointer-events:auto}
+  .month-tabs .inner{display:flex;gap:5px;overflow-x:auto;padding:0 16px;-webkit-overflow-scrolling:touch;scrollbar-width:thin}
+  .month-tabs .inner::-webkit-scrollbar{height:3px}
+  .month-tabs a{flex-shrink:0;display:inline-block;padding:6px 12px;background:#fff;border:1.5px solid var(--line);border-radius:999px;color:var(--navy);text-decoration:none;font-weight:700;font-size:13px;white-space:nowrap;transition:all .15s}
+  .month-tabs a:hover{background:var(--navy);color:#fff;border-color:var(--navy)}
+  .month-tabs .label{font-size:11px;color:var(--sub);font-weight:600;padding:6px 4px;flex-shrink:0}
+
+  @media (max-width:480px){
+    .jump-grid{grid-template-columns:repeat(5,1fr);gap:6px}
+    .jump-grid a{padding:10px 2px;font-size:13px;min-height:48px}
+    .jump-section{padding:12px 12px}
+  }
 
   /* スクロール時の見出し位置を補正（タブ分オフセット） */
   .month{margin:24px 0;scroll-margin-top:70px}
@@ -164,69 +189,91 @@
   <div class="open">✨ 学習支援にお申込みでない児童も参加できます。詳細は追ってご案内します。</div>
 </aside>
 
-<h2>区分の見方</h2>
-<div class="legend">
-  <div class="legend-item">
-    <span class="pill pill-a">A</span>
-    <div class="body">
-      <div class="desc">全学年同じ時間で実施</div>
-      <div class="slots-row">
-        <div class="slot-box gA" data-grades="5">
-          <div class="grades-row"><span class="grade">2年</span><span class="grade">3年</span><span class="grade">4年</span><span class="grade">5年</span><span class="grade">6年</span></div>
-          <div class="time">13:10–14:40</div>
+<!-- 区分の見方（トグル） -->
+<details class="legend-toggle">
+  <summary>📖 区分の見方（A・B・C・休みの意味を見る）</summary>
+  <div class="legend-body">
+    <div class="legend-item">
+      <span class="pill pill-a">A</span>
+      <div class="body">
+        <div class="desc">全学年同じ時間で実施</div>
+        <div class="slots-row">
+          <div class="slot-box gA" data-grades="5">
+            <div class="grades-row"><span class="grade">2年</span><span class="grade">3年</span><span class="grade">4年</span><span class="grade">5年</span><span class="grade">6年</span></div>
+            <div class="time">13:10–14:40</div>
+          </div>
         </div>
       </div>
     </div>
-  </div>
-  <div class="legend-item">
-    <span class="pill pill-b">B</span>
-    <div class="body">
-      <div class="desc">2〜4年は前半／5・6年は後半</div>
-      <div class="slots-row">
-        <div class="slot-box gB" data-grades="3">
-          <div class="grades-row"><span class="grade">2年</span><span class="grade">3年</span><span class="grade">4年</span></div>
-          <div class="time">13:10–13:55</div>
-        </div>
-        <div class="slot-box gB" data-grades="2">
-          <div class="grades-row"><span class="grade">5年</span><span class="grade">6年</span></div>
-          <div class="time">14:10–15:10</div>
-        </div>
-      </div>
-    </div>
-  </div>
-  <div class="legend-item">
-    <span class="pill pill-c">C</span>
-    <div class="body">
-      <div class="desc">2・3年は前半／4〜6年は後半</div>
-      <div class="slots-row">
-        <div class="slot-box gC" data-grades="2">
-          <div class="grades-row"><span class="grade">2年</span><span class="grade">3年</span></div>
-          <div class="time">13:10–14:10</div>
-        </div>
-        <div class="slot-box gC" data-grades="3">
-          <div class="grades-row"><span class="grade">4年</span><span class="grade">5年</span><span class="grade">6年</span></div>
-          <div class="time">14:20–15:20</div>
+    <div class="legend-item">
+      <span class="pill pill-b">B</span>
+      <div class="body">
+        <div class="desc">2〜4年は前半／5・6年は後半</div>
+        <div class="slots-row">
+          <div class="slot-box gB" data-grades="3">
+            <div class="grades-row"><span class="grade">2年</span><span class="grade">3年</span><span class="grade">4年</span></div>
+            <div class="time">13:10–13:55</div>
+          </div>
+          <div class="slot-box gB" data-grades="2">
+            <div class="grades-row"><span class="grade">5年</span><span class="grade">6年</span></div>
+            <div class="time">14:10–15:10</div>
+          </div>
         </div>
       </div>
     </div>
-  </div>
-  <div class="legend-item">
-    <span class="pill pill-off">休</span>
-    <div class="body">
-      <div class="desc">寺子屋はお休みです</div>
+    <div class="legend-item">
+      <span class="pill pill-c">C</span>
+      <div class="body">
+        <div class="desc">2・3年は前半／4〜6年は後半</div>
+        <div class="slots-row">
+          <div class="slot-box gC" data-grades="2">
+            <div class="grades-row"><span class="grade">2年</span><span class="grade">3年</span></div>
+            <div class="time">13:10–14:10</div>
+          </div>
+          <div class="slot-box gC" data-grades="3">
+            <div class="grades-row"><span class="grade">4年</span><span class="grade">5年</span><span class="grade">6年</span></div>
+            <div class="time">14:20–15:20</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="legend-item">
+      <span class="pill pill-off">休</span>
+      <div class="body">
+        <div class="desc">寺子屋はお休みです</div>
+      </div>
     </div>
   </div>
-</div>
+</details>
 
-<h2>月別スケジュール</h2>
+<!-- 月別ジャンプ（見出し兼用・視認性重視） -->
+<section class="jump-section" aria-label="月別ジャンプ">
+  <div class="title">
+    <span class="icon">📅</span>
+    <span>月別スケジュール</span>
+    <span class="hint">👇 月をタップして移動</span>
+  </div>
+  <div class="jump-grid">
+    <a href="#m6">6月<small>開講</small></a>
+    <a href="#m7">7月</a>
+    <a href="#m8" class="highlight">8月<small>🌟体験</small></a>
+    <a href="#m9">9月</a>
+    <a href="#m10">10月</a>
+    <a href="#m11">11月</a>
+    <a href="#m12">12月</a>
+    <a href="#m1">1月</a>
+    <a href="#m2">2月</a>
+    <a href="#m3">3月</a>
+  </div>
+</section>
 
-<!-- 月別ジャンプタブ -->
-<nav class="month-tabs" aria-label="月別ジャンプ">
+<!-- スクロール時のミニタブ（上部固定） -->
+<nav class="month-tabs" id="miniTabs" aria-label="月別ジャンプ（固定）">
   <div class="inner">
-    <span class="label">ジャンプ →</span>
+    <span class="label">月へ →</span>
     <a href="#m6">6月</a>
     <a href="#m7">7月</a>
-    <a href="#m8" style="background:#fef3c7;border-color:#f59e0b;color:#7c2d12">🎨 8月</a>
+    <a href="#m8" style="background:#fef3c7;border-color:#f59e0b;color:#7c2d12">🌟8月</a>
     <a href="#m9">9月</a>
     <a href="#m10">10月</a>
     <a href="#m11">11月</a>
@@ -783,5 +830,22 @@
 </footer>
 
 </div>
+
+<script>
+  // メインジャンプグリッドが画面外に出たら、上部にミニタブを表示
+  (function(){
+    const mini = document.getElementById('miniTabs');
+    const jump = document.querySelector('.jump-section');
+    if(!mini || !jump) return;
+    const obs = new IntersectionObserver(entries => {
+      entries.forEach(e => {
+        if(e.isIntersecting) mini.classList.remove('visible');
+        else if(e.boundingClientRect.top < 0) mini.classList.add('visible');
+        else mini.classList.remove('visible');
+      });
+    }, {threshold: 0});
+    obs.observe(jump);
+  })();
+</script>
 </body>
 </html>
