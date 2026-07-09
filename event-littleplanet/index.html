@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="寺子屋にじがおか 夏の特別体験『未来の遊びを作ろう！』寺子屋にじがおか×リトルプラネット社×虹ヶ丘こども文化センター 共催。自分で描いた絵がゲームの中で動き出す2日間プログラム。8/21金・8/29土 10:00-12:00、虹ヶ丘こども文化センターで開催。参加無料・4〜6年生対象。">
+<meta name="description" content="寺子屋にじがおか 夏の特別体験『未来の遊びを作ろう！』寺子屋にじがおか×株式会社リトプラ×虹ヶ丘こども文化センター 共催。自分で描いた絵がゲームの中で動き出す2日間プログラム。8/21金・8/29土 10:00-12:00、虹ヶ丘こども文化センターで開催。参加無料・4〜6年生対象。">
 <title>未来の遊びを作ろう！｜寺子屋にじがおか 夏の特別体験</title>
 <link rel="icon" type="image/png" href="../_assets/logo.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -75,6 +75,12 @@
   }
   .road-dash{animation:roaddash .5s linear infinite}
   @keyframes roaddash{from{transform:translateX(0)}to{transform:translateX(-16px)}}
+
+  /* 「やってくる！」アイキャッチ */
+  .coming{display:block;margin:18px auto 0;max-width:480px;font-weight:900;font-size:clamp(15px,4.2vw,19px);line-height:1.6;transform:rotate(-1deg)}
+  .coming .lp-name{font-family:var(--font-pop);font-weight:400;color:var(--blue-deep);background:linear-gradient(transparent 62%,rgba(255,200,61,.8) 62%);padding:0 2px}
+  .coming .bang{display:inline-block;animation:bang-pop 1.4s ease-in-out infinite;color:var(--pink)}
+  @keyframes bang-pop{0%,100%{transform:scale(1)}50%{transform:scale(1.25) rotate(8deg)}}
 
   /* ヒーローCTA */
   .hero-cta{display:inline-block;margin-top:26px;font-family:var(--font-pop);font-size:16px;background:var(--yellow);color:var(--ink);padding:15px 38px;border-radius:999px;border:2.5px solid var(--ink);text-decoration:none;box-shadow:0 5px 0 var(--ink);transition:transform .15s,box-shadow .15s}
@@ -244,7 +250,8 @@
   <span class="confetti" style="top:44%;right:16%;animation-delay:3s">⭐</span>
 
   <img src="../_assets/logo.png" alt="寺子屋にじがおか" class="logo"><br>
-  <span class="badge">🌟 夏の特別体験 ｜ 寺子屋にじがおか × リトルプラネット社 × 虹ヶ丘こども文化センター 共催</span>
+  <span class="badge">🌟 夏の特別体験 ｜ 寺子屋にじがおか × 株式会社リトプラ × 虹ヶ丘こども文化センター 共催</span>
+  <span class="coming">あの<span class="lp-name">“リトルプラネット”</span>が、<br>虹ヶ丘にやってくる<span class="bang">！</span></span>
   <h1>
     <span class="line1">未来の遊びを作ろう！</span>
     <span class="kimi">きみの絵</span>が、ゲームの中で<br><span class="ugoki">動き出す。</span>
@@ -369,24 +376,25 @@
       <li><b>かく</b> — 自分だけのキャラクター・乗りものをデザイン</li>
       <li><b>とりこむ</b> — スキャンして、デジタル世界にデビュー！</li>
       <li><b>あそぶ</b> — みんなの作品が集まったゲーム世界で遊びまくる</li>
+      <li><b>パワーアップ</b> — 「もっとこうしたい！」を形に、作品や遊び方をバージョンアップ</li>
     </ul>
   </div>
 
-  <div class="day-conn"><span>1週間で「もっとこうしたい！」を考えてこよう</span></div>
+  <div class="day-conn"><span>1週間、あそびのアイデアをあたためてこよう</span></div>
 
   <div class="dayblock dy2 rv">
     <span class="dtag">DAY 2｜8/29（土）</span>
-    <h3>🚀 遊びを進化させる日</h3>
+    <h3>🚀 あそびこんで、未来を発表する日</h3>
     <ul>
-      <li><b>パワーアップ</b> — Day1のアイデアをもとに、作品や遊び方をバージョンアップ</li>
       <li><b>あそびこむ</b> — 進化したゲーム世界を、みんなで遊びつくす</li>
+      <li><b>フィナーレ</b> — 「未来の遊び」をみんなで考えて、発表！</li>
     </ul>
   </div>
 
   <div class="finale rv">
     <span class="ftag">🌈 2日間のフィナーレ</span>
     <h3>「<span class="em">未来の遊び</span>」をみんなで考える時間</h3>
-    <p>最後は、テーマパークを作っているプロと一緒に、「こんな遊びがあったらいいな」をみんなで考えるアイデア会議。子どもたちの発想が、本当に未来のアトラクションになるかも——。あそぶ側から、つくる側へ。その第一歩です。</p>
+    <p>最後は、テーマパークを作っているプロと一緒に、「こんな遊びがあったらいいな」をみんなで考えて発表するアイデア会議。子どもたちの発想が、本当に未来のアトラクションになるかも——。あそぶ側から、つくる側へ。その第一歩です。</p>
   </div>
 </div>
 
@@ -404,7 +412,7 @@
 <p class="sec-sub rv">「デジタルで遊ばせる」ではなく「デジタルで創らせる」体験です</p>
 
 <div class="parent-note rv">
-  <div class="ph">寺子屋にじがおか×リトルプラネット社の共同企画として設計しました</div>
+  <div class="ph">寺子屋にじがおか×株式会社リトプラの共同企画として設計しました</div>
   <div class="pv-list">
     <div class="pv">
       <span class="ic">🎨</span>
@@ -438,7 +446,7 @@
 </div>
 
 <div class="trust rv">
-  <div class="t-item"><b>全国で人気のプロの機材</b>デジタルテーマパーク「リトルプラネット」を全国で運営する会社の本格アトラクション機材が、学校にやってきます。</div>
+  <div class="t-item"><b>全国で人気のプロの機材</b>次世代型テーマパーク「リトルプラネット」を全国で運営する会社の本格アトラクション機材が、学校にやってきます。</div>
   <div class="t-item"><b>安心の開催体制</b>川崎市の地域寺子屋事業（寺子屋にじがおか）の活動として、地域の虹ヶ丘こども文化センターで開催します。</div>
 </div>
 
@@ -461,7 +469,7 @@
     <dt>👥 定員</dt>
     <dd>定員あり<br><small>お申込み多数の場合は抽選となります</small></dd>
     <dt>🏢 共催</dt>
-    <dd>寺子屋にじがおか／リトルプラネット社／虹ヶ丘こども文化センター<br><small>リトルプラネット社は全国でデジタルテーマパーク「リトルプラネット」を運営</small></dd>
+    <dd>寺子屋にじがおか／株式会社リトプラ／虹ヶ丘こども文化センター<br><small>株式会社リトプラは全国で次世代型テーマパーク「リトルプラネット」を運営</small></dd>
   </dl>
 </div>
 
@@ -469,9 +477,9 @@
 <h2 class="sec rv">よくある<span class="em">ご質問</span></h2>
 <div class="faq rv">
   <details>
-    <summary><span class="q">Q</span>リトルプラネット社って、どんな会社？</summary>
+    <summary><span class="q">Q</span>株式会社リトプラって、どんな会社？</summary>
     <div class="a">
-      <p>「遊びが学びに変わる」をコンセプトに、全国でデジタルテーマパーク<strong>「リトルプラネット」</strong>を運営している会社です。砂遊びやお絵かきなど昔ながらの遊びを、AR（拡張現実）などの最新テクノロジーで進化させたアトラクションが人気です。</p>
+      <p>「遊びが学びに変わる」をコンセプトに、全国で次世代型テーマパーク<strong>「リトルプラネット」</strong>を運営している会社です。砂遊びやお絵かきなど昔ながらの遊びを、AR（拡張現実）などの最新テクノロジーで進化させたアトラクションが人気です。</p>
       <p>今回は、そのテーマパークで実際に使われている本格機材が会場にやってきます。</p>
       <p>🔗 <a href="https://litpla.com/" target="_blank" rel="noopener">リトルプラネット公式サイトでアトラクションを見る</a></p>
     </div>
