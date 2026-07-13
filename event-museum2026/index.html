@@ -188,7 +188,8 @@
   /* ====== プレゼント ====== */
   .gift{background:linear-gradient(160deg,#FFF1DE,#FFE7EC);}
   .gift-grid{display:grid;grid-template-columns:1fr 1fr;gap:44px;align-items:center;position:relative;z-index:2;}
-  .gift-visual{aspect-ratio:5/4;border-radius:var(--radius-lg);background:#fff;box-shadow:var(--shadow-card);display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden;}
+  .gift-visual{aspect-ratio:5/4;border-radius:var(--radius-lg);background:linear-gradient(150deg,#FFE7EC,#FFF1DE);box-shadow:var(--shadow-card);display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden;}
+  .gift-visual img{width:100%;height:100%;object-fit:cover;display:block;}
   .gift .ribbon{display:inline-block;font-family:var(--font-display);font-weight:700;font-size:13px;color:#fff;background:var(--sun);padding:5px 14px;border-radius:999px;margin-bottom:14px;}
   .gift ul{list-style:none;padding:0;margin:18px 0 0;display:grid;gap:12px;}
   .gift li{display:flex;gap:12px;align-items:flex-start;font-size:15px;}
@@ -401,19 +402,8 @@
   <div class="wrap">
     <div class="gift-grid">
       <div class="gift-visual reveal">
-        <!-- キットパスのイメージ。本番は実物写真に差し替え可 -->
-        <svg viewBox="0 0 300 240" width="72%" role="img" aria-label="カラフルなキットパスのイラスト">
-          <g stroke="#3B3230" stroke-width="4" stroke-linecap="round" stroke-linejoin="round">
-            <rect x="60" y="40" width="22" height="150" rx="11" fill="#FF8FA3"/>
-            <rect x="92" y="55" width="22" height="135" rx="11" fill="#FFCF6B"/>
-            <rect x="124" y="35" width="22" height="155" rx="11" fill="#9BD0E0"/>
-            <rect x="156" y="60" width="22" height="130" rx="11" fill="#C6B6E8"/>
-            <rect x="188" y="48" width="22" height="142" rx="11" fill="#A8D8A0"/>
-            <path d="M60 40 l11 -18 l11 18" fill="#fff"/>
-            <path d="M124 35 l11 -18 l11 18" fill="#fff"/>
-            <path d="M188 48 l11 -18 l11 18" fill="#fff"/>
-          </g>
-        </svg>
+        <!-- キットパス実物写真。ファイル名 kitpas.jpg を同じフォルダに配置 -->
+        <img src="kitpas.jpg" alt="髙森さんオリジナルのキットパス（カラフルなアート画材）" loading="lazy" onerror="this.style.display='none'">
       </div>
       <div class="reveal">
         <span class="ribbon">🎁 来場者ぜんいんにプレゼント</span>
@@ -440,10 +430,10 @@
       <div class="info-row"><div class="label">📅 日時</div><div class="value"><strong>2026年8月30日（日）10:00〜12:00</strong></div></div>
       <div class="info-row"><div class="label">📍 会場</div><div class="value">虹ヶ丘こども文化センター（川崎市麻生区・虹ヶ丘小学校区）<br><small style="color:var(--ink-soft);">※お部屋は当日ご案内します</small></div></div>
       <div class="info-row"><div class="label">👨‍👩‍👧 対象</div><div class="value">虹ヶ丘小学校 1〜6年生（保護者ご同伴）</div></div>
-      <div class="info-row"><div class="label">🎫 定員</div><div class="value"><strong>20組</strong>（保護者ご同伴）<br><small style="color:var(--ink-soft);">お申し込み多数の場合は抽選となります。寺子屋にじがおか 学習支援登録者を優先とさせていただく場合があります。</small></div></div>
+      <div class="info-row"><div class="label">🎫 定員</div><div class="value"><strong>20組</strong>（保護者ご同伴）<br><small style="color:var(--ink-soft);">お申し込み多数の場合は抽選となります。寺子屋にじがおか〜放課後ラボ〜 学習支援登録者を優先とさせていただく場合があります。</small></div></div>
       <div class="info-row"><div class="label">💰 参加費</div><div class="value"><span class="badge-free">無料</span></div></div>
       <div class="info-row"><div class="label">🎨 内容</div><div class="value">美術館ルームツアー ＆ 塗り絵・自由画体験<br>＋ 来場者全員にキットパスのプレゼント</div></div>
-      <div class="info-row"><div class="label">🏫 共催</div><div class="value">寺子屋にじがおか ／ にじがおかこども文化センター</div></div>
+      <div class="info-row"><div class="label">🏫 共催</div><div class="value">寺子屋にじがおか〜放課後ラボ〜 ／ 虹ヶ丘こども文化センター</div></div>
       <div class="info-row"><div class="label">🎗 後援</div><div class="value">川崎市教育委員会</div></div>
     </div>
   </div>
@@ -453,7 +443,7 @@
 <section class="section final" id="apply">
   <div class="wrap">
     <h2 class="reveal">自分だけの色に、会いにきてね。</h2>
-    <p class="reveal">対象：虹ヶ丘小学校 1〜6年生（保護者ご同伴）・参加無料・20組。<br>お申し込み多数の場合は抽選となります（寺子屋にじがおか 学習支援登録者を優先とさせていただく場合があります）。</p>
+    <p class="reveal">対象：虹ヶ丘小学校 1〜6年生（保護者ご同伴）・参加無料・20組。<br>お申し込み多数の場合は抽選となります（寺子屋にじがおか〜放課後ラボ〜 学習支援登録者を優先とさせていただく場合があります）。</p>
     <!-- 【要差し替え】Googleフォームの申込URLに変更してください（現在は準備中プレースホルダ） -->
     <a href="#" class="btn-primary reveal" aria-disabled="true">お申し込みフォーム（準備中） <span class="arrow">→</span></a>
     <p class="btn-note reveal" style="margin-top:14px;">お申し込みフォーム公開までしばらくお待ちください。<br>寺子屋にじがおか 公式LINEでも受付・ご案内します。</p>
@@ -468,7 +458,7 @@
       <p class="f-note">親子でめぐる美術館ルームツアー＆塗り絵・絵画体験。地域で本物の創造体験に出会い、髙森さんの創作を地域ぐるみで応援するコラボ企画です。</p>
     </div>
     <div class="f-org">
-      共催：寺子屋にじがおか ／ にじがおかこども文化センター<br>
+      共催：寺子屋にじがおか〜放課後ラボ〜 ／ 虹ヶ丘こども文化センター<br>
       後援：川崎市教育委員会
     </div>
   </div>
