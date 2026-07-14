@@ -225,8 +225,30 @@
   .reveal.in{opacity:1;transform:none;}
 
   /* ====== レスポンシブ ====== */
+  /* ====== 申込ステータス告知バー ====== */
+  .notice{background:var(--sun);color:#5a4408;text-align:center;font-family:var(--font-display);font-weight:700;font-size:14px;padding:10px 20px;}
+  .notice a{color:#5a4408;text-decoration:underline;}
+
+  /* ====== この日できること（体験3つ） ====== */
+  .can-do{background:var(--cream-deep);}
+  .can-do .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-top:38px;}
+  .can-card{background:#fff;border-radius:var(--radius-lg);padding:30px 24px;text-align:center;box-shadow:var(--shadow-card);}
+  .can-card .ico{font-size:40px;line-height:1;}
+  .can-card h3{font-size:18px;font-weight:900;margin:14px 0 8px;}
+  .can-card p{font-size:14px;color:var(--ink-soft);}
+
+  /* ====== FAQ ====== */
+  .faq-list{max-width:760px;margin:38px auto 0;display:grid;gap:14px;}
+  .faq-item{background:#fff;border-radius:var(--radius-md);box-shadow:var(--shadow-card);overflow:hidden;}
+  .faq-item summary{font-family:var(--font-display);font-weight:700;font-size:16px;padding:18px 24px;cursor:pointer;list-style:none;display:flex;gap:12px;align-items:flex-start;}
+  .faq-item summary::-webkit-details-marker{display:none;}
+  .faq-item summary .q{color:var(--coral-deep);font-weight:900;}
+  .faq-item[open] summary{padding-bottom:6px;}
+  .faq-item .a{padding:0 24px 20px 24px;color:var(--ink-soft);font-size:15px;}
+
   @media(max-width:860px){
     .hero-grid,.artist-grid,.gift-grid{grid-template-columns:1fr;}
+    .can-do .grid{grid-template-columns:1fr;}
     .hero-art{order:-1;max-width:360px;margin:0 auto;}
     .flow-list{grid-template-columns:1fr;}
     .section{padding:72px 0;}
@@ -242,10 +264,14 @@
 </head>
 <body>
 
+<!-- ===== 申込ステータス告知バー（受付開始後は削除 or 「受付中」に変更） ===== -->
+<!-- 【要更新】受付開始日が決まったら「◯月◯日〜」に、開始したらこのバー自体を外す -->
+<div class="notice">📣 ただいま申込受付の準備中です。受付開始は <strong>寺子屋にじがおか公式LINE</strong> でお知らせします。</div>
+
 <!-- ===== ナビ ===== -->
 <header class="nav">
   <div class="nav-inner">
-    <div class="brand"><span class="dot"></span>虹の丘こども美術館 × 寺子屋にじがおか</div>
+    <div class="brand"><span class="dot"></span>虹の丘こども美術館</div>
     <a href="#apply" class="nav-cta">お申し込み</a>
   </div>
 </header>
@@ -261,7 +287,7 @@
         <span class="eyebrow">🎨 親子でたのしむ 地域アートイベント</span>
         <h1>色って、こんなに<br><span class="accent">じゆう</span>でいいんだ。</h1>
         <p class="sub">虹の丘こども美術館 × 寺子屋にじがおか<br>〜 親子でめぐる美術館ルームツアー＆塗り絵・絵画体験 〜</p>
-        <p class="lead">地域で活動する保育者アーティスト・髙森遼一さんの作品世界を入口に、親子で「本物にふれる時間」と「感じたことを言葉にする時間」を。正解のない、自分だけの色に出会う2時間です。</p>
+        <p class="lead">地域で活動する保育者アーティスト・髙森遼一さんのお話を聞き、実際の作品を間近で見て、同じ画材で描いてみる。見る・聞く・描くを親子で楽しむ2時間です。絵が得意でなくても、上手な感想が言えなくても大丈夫。正解のない、自分だけの色に出会いにきてください。</p>
 
         <div class="fact-row">
           <div class="fact"><div class="k">日にち</div><div class="v">8/30<small>（日）</small></div></div>
@@ -270,7 +296,7 @@
           <div class="fact"><div class="k">定員</div><div class="v">20<small>組</small></div></div>
         </div>
 
-        <a href="#apply" class="btn-primary">お申し込みはこちら <span class="arrow">→</span></a>
+        <a href="#apply" class="btn-primary">親子で参加を申し込む <span class="arrow">→</span></a>
         <p class="btn-note">対象：虹ヶ丘小学校 1〜6年生（保護者ご同伴）／会場：虹ヶ丘こども文化センター</p>
       </div>
 
@@ -280,8 +306,8 @@
         <div class="paint-dot" style="width:22px;height:22px;background:var(--sky);top:20%;right:-4px;"></div>
         <div class="paint-dot" style="width:28px;height:28px;background:var(--lavender);bottom:2%;left:0;"></div>
         <div class="art-card">
-          <!-- 髙森さんのキリン「Sunshine」に着想したイメージ。本番は髙森さんの作品画像に差し替え可 -->
-          <svg viewBox="0 0 400 400" role="img" aria-label="いろとりどりのキリンのイラスト（髙森さんの作品Sunshineに着想）">
+          <!-- イベント専用の装飾イラスト（髙森さんの作品ではありません）。本人許諾が取れれば実作品画像に差し替え推奨 -->
+          <svg viewBox="0 0 400 400" role="img" aria-label="いろとりどりのキリンのイラスト（イベント装飾）">
             <rect width="400" height="400" fill="#FFFDF8"/>
             <circle cx="320" cy="80" r="46" fill="#FFCF6B"/>
             <g stroke="#3B3230" stroke-width="5" stroke-linecap="round" stroke-linejoin="round" fill="none">
@@ -315,12 +341,40 @@
   </div>
 </section>
 
+<!-- ===== この日できること ===== -->
+<section class="section can-do">
+  <div class="wrap">
+    <div class="center">
+      <span class="kicker reveal" style="display:block;">What you can do</span>
+      <h2 class="h2 reveal">この日、できること</h2>
+    </div>
+    <div class="grid">
+      <div class="can-card reveal">
+        <div class="ico">🔍</div>
+        <h3>作品を探検</h3>
+        <p>髙森さんの作品を、親子でぐるり。「好きな色」「気になる絵」を見つけよう。</p>
+      </div>
+      <div class="can-card reveal">
+        <div class="ico">🖍️</div>
+        <h3>キットパスで描く</h3>
+        <p>プレゼントのキットパスを使って、好きな色を思いきり。塗り絵も自由画もOK。</p>
+      </div>
+      <div class="can-card reveal">
+        <div class="ico">🎁</div>
+        <h3>作品を持ち帰る</h3>
+        <p>描いた作品と、髙森さんオリジナルのキットパスをおうちへ持ち帰れます。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
 <!-- ===== こんな時間です ===== -->
 <section class="section">
   <div class="wrap center">
     <span class="kicker reveal" style="display:block;">About</span>
     <h2 class="h2 reveal">「じょうず」じゃなくていい。</h2>
     <p class="lead reveal">キリンを黄色で塗ってもいい。空をピンクにしてもいい。<br>かつて色づかいをわらわれた髙森さんは、いま「自分らしい色」で描きつづけています。その作品にふれると、「感じたままの色でいいんだ」と、すっと肩の力が抜けます。ひとりひとり、見え方も感じ方もちがう。そのちがいを、まるごと楽しむ2時間です。</p>
+    <p class="lead reveal" style="margin-top:18px;">保護者の方も、見守るだけではありません。お子さんと一緒に作品を見て、色を選び、感じ方を聞き合います。「どうしてこの色にしたの？」ではなく「どの色がいちばん好き？」——上手・下手をジャッジせず、それぞれの"好き"を楽しんでください。</p>
   </div>
 </section>
 
@@ -330,15 +384,15 @@
   <div class="wrap">
     <div class="artist-grid">
       <div class="artist-photo reveal">
-        <!-- 本番は髙森遼一さんのポートレート写真に差し替え -->
-        <div class="ph-label">髙森 遼一 さん<span>ポートレート写真をここに<br>（本番で差し替え）</span></div>
+        <!-- 【要差し替え】髙森遼一さんのポートレート写真 or 作品画像。src を assets/ に置いて img で表示 -->
+        <div class="ph-label">🎨<span>髙森 遼一 さん</span></div>
       </div>
       <div class="reveal">
         <span class="kicker">Artist</span>
         <h2>絵を描く、保育者。<br>髙森 遼一（たかもり りょういち）さん</h2>
         <span class="role">保育者アーティスト</span>
-        <p class="bio">生まれつき、色の見え方に特性がある髙森さん。8歳のとき、その色づかいをわらわれて、絵を描くのをやめてしまった時期がありました。<br><br>ふたたび絵を手にしたのは、息子さんが生まれたとき。「すべての子どもが、自分らしく生きられるように」——その願いを、鉛筆と色鉛筆のカラフルな作品にこめて描いています。幼稚園教諭・保育士・障がい児者支援員として、17年にわたり子どもと関わってきた保育者でもあります。</p>
-        <p class="bio">描きはじめて半年ほどでニューヨークでの展示を実現。恩師に捧げたキリンの絵「Sunshine」には、こんな言葉が添えられています——「ふたりだけのやくそくは、こころのなかで、いまもいきつづけています」。</p>
+        <p class="bio">幼稚園教諭・保育士・障がい児者支援員として、17年にわたり子どもたちと関わってきた保育者アーティスト。髙森さんには生まれつき色の見え方に特性があります。見え方や感じ方は一人ひとりちがう——その経験を大切にしながら、自分らしい色で作品を描いています。</p>
+        <p class="bio">子どもの頃には、自分の色づかいをわらわれて絵から離れた時期もありました。大人になって再び描きはじめ、いまは「すべての子どもが、自分らしく生きられるように」という願いをこめて、鉛筆や色鉛筆で作品を制作しています。当日は作品を展示するだけでなく、ご本人から制作への思いや、色を自由に楽しむことについてお話しいただきます。</p>
         <div class="chip-row">
           <span class="chip"><span class="emo">🖍️</span>特性を活かした色づかい</span>
           <span class="chip"><span class="emo">👧</span>子どもと関わって17年</span>
@@ -391,7 +445,7 @@
         <div class="flow-num">4</div>
         <div class="flow-time">10:50 ごろ -</div>
         <h3>塗り絵・自由画たいけん</h3>
-        <p>プレゼントの髙森さんオリジナル「キットパス」を使って、塗り絵や絵を描いてみよう！自分だけの色で自由に。描いた作品はおうちに持ち帰れます。</p>
+        <p>プレゼントの髙森さんオリジナル「キットパス」を使って、塗り絵や絵を描いてみよう！自分だけの色で自由に。見本どおりに描かなくてOK、発表や上手な説明もいりません。描いた作品はおうちに持ち帰れます。</p>
       </div>
     </div>
   </div>
@@ -407,13 +461,16 @@
       </div>
       <div class="reveal">
         <span class="ribbon">🎁 来場者ぜんいんにプレゼント</span>
-        <h2 class="h2" style="margin-top:6px;">髙森さんオリジナルの<br>「キットパス」をおみやげに</h2>
-        <p class="lead" style="color:var(--ink-soft);">つるつるした窓ガラスにも描けて、水でするっと消せる不思議なアート画材「キットパス」。今回は髙森さんオリジナルの非売品を、来てくれたお子さまぜんいんにお贈りします。</p>
+        <h2 class="h2" style="margin-top:6px;">「キットパス」って、なに？</h2>
+        <p class="lead" style="color:var(--ink-soft);">クレヨンみたいな、ふしぎな色えんぴつ。ふつうのクレヨンとちがって、<strong>つるつるの窓ガラスや鏡にもスルスル描ける</strong>んだ。まちがえても、<strong>ぬれた布でサッとふけば消える</strong>から、なんども描きなおせるよ。</p>
+        <p class="lead" style="color:var(--ink-soft);margin-top:14px;">色をかさねたり、指でこすってぼかしたり——遊び方は自由。今回は<strong>髙森さんオリジナルの、お店では買えない特別なキットパス</strong>を、来てくれたお子さんぜんいんにプレゼントします。</p>
         <ul>
-          <li><span class="tick">✓</span><span>来場したお子さま全員にプレゼント（非売品）</span></li>
-          <li><span class="tick">✓</span><span>当日描いた作品は、おうちに持ち帰れます</span></li>
-          <li><span class="tick">✓</span><span>おうちに帰ってからも、色あそびがつづきます</span></li>
+          <li><span class="tick">✓</span><span>窓・鏡・紙…いろんなところに描ける</span></li>
+          <li><span class="tick">✓</span><span>水でふけば消えるから、何度でもチャレンジできる</span></li>
+          <li><span class="tick">✓</span><span>髙森さんオリジナルの非売品を全員にプレゼント</span></li>
+          <li><span class="tick">✓</span><span>当日の作品もキットパスも、おうちに持ち帰れる</span></li>
         </ul>
+        <p class="btn-note" style="color:var(--ink-soft);margin-top:14px;">※ キットパスは安全性に配慮した原料でつくられたアート画材です。小さなお子さんは、おうちの方と一緒に使ってね。</p>
       </div>
     </div>
   </div>
@@ -435,6 +492,39 @@
       <div class="info-row"><div class="label">🎨 内容</div><div class="value">美術館ルームツアー ＆ 塗り絵・自由画体験<br>＋ 来場者全員にキットパスのプレゼント</div></div>
       <div class="info-row"><div class="label">🏫 共催</div><div class="value">寺子屋にじがおか〜放課後ラボ〜 ／ 虹ヶ丘こども文化センター</div></div>
       <div class="info-row"><div class="label">🎗 後援</div><div class="value">川崎市教育委員会</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== よくある質問 ===== -->
+<section class="section" style="background:var(--cream-deep);">
+  <div class="wrap">
+    <div class="center">
+      <span class="kicker reveal" style="display:block;">FAQ</span>
+      <h2 class="h2 reveal">よくある質問</h2>
+    </div>
+    <div class="faq-list">
+      <details class="faq-item reveal">
+        <summary><span class="q">Q.</span>絵が苦手でも参加できますか？</summary>
+        <div class="a">はい。上手に描くことを目的としたイベントではありません。塗り絵もご用意しますので、自由に描くのが苦手なお子さんも安心してご参加ください。</div>
+      </details>
+      <details class="faq-item reveal">
+        <summary><span class="q">Q.</span>保護者も一緒に描きますか？</summary>
+        <div class="a">お子さんと一緒に作品を見たり、色を選んだりして楽しんでいただきます。評価役ではなく、"いちばんの応援団"として、お子さんの感じ方に耳をかたむけてください。</div>
+      </details>
+      <details class="faq-item reveal">
+        <summary><span class="q">Q.</span>服が汚れることはありますか？</summary>
+        <div class="a">画材を使いますので、念のため汚れてもよい服装でお越しください。</div>
+      </details>
+      <details class="faq-item reveal">
+        <summary><span class="q">Q.</span>感想の発表はありますか？</summary>
+        <div class="a">発表や上手な説明は必要ありません。見て、感じて、描くだけでも大丈夫。話したくなったら、言葉でも自由に伝えてみてください。</div>
+      </details>
+      <details class="faq-item reveal">
+        <summary><span class="q">Q.</span>写真撮影はありますか？</summary>
+        <div class="a">当日は活動記録のため写真を撮影します。広報物・SNS等への掲載については、お申し込み時に保護者の方の同意を確認します。</div>
+      </details>
+      <!-- 【要追記・Yoshi確認後】兄弟姉妹の同伴可否／保護者の人数／駐車・駐輪／キャンセル方法／荒天中止連絡／問い合わせ先 などが決まり次第、Q&Aを追加してください -->
     </div>
   </div>
 </section>
