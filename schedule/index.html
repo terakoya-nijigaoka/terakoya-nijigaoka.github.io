@@ -68,6 +68,8 @@
   .month-tabs .inner::-webkit-scrollbar{height:3px}
   .month-tabs a{flex-shrink:0;display:inline-block;padding:6px 12px;background:#fff;border:1.5px solid var(--line);border-radius:999px;color:var(--navy);text-decoration:none;font-weight:700;font-size:13px;white-space:nowrap;transition:all .15s}
   .month-tabs a:hover{background:var(--navy);color:#fff;border-color:var(--navy)}
+  .month-tabs a.highlight{background:#fef3c7;border-color:#f59e0b;color:#7c2d12}
+  .month-tabs a.highlight:hover{background:#f59e0b;color:#fff;border-color:#f59e0b}
   .month-tabs .label{font-size:11px;color:var(--sub);font-weight:600;padding:6px 4px;flex-shrink:0}
 
   @media (max-width:480px){
@@ -239,7 +241,7 @@
     <a href="#m6">6月<small>開講</small></a>
     <a href="#m7">7月</a>
     <a href="#m8">8月</a>
-    <a href="#m9" class="highlight">9月<small>今月</small></a>
+    <a href="#m9" class="highlight">9月<small class="now">今月</small></a>
     <a href="#m10">10月</a>
     <a href="#m11">11月</a>
     <a href="#m12">12月</a>
@@ -256,7 +258,7 @@
     <a href="#m6">6月</a>
     <a href="#m7">7月</a>
     <a href="#m8">8月</a>
-    <a href="#m9" style="background:#fef3c7;border-color:#f59e0b;color:#7c2d12">9月</a>
+    <a href="#m9" class="highlight">9月</a>
     <a href="#m10">10月</a>
     <a href="#m11">11月</a>
     <a href="#m12">12月</a>
@@ -827,6 +829,62 @@
       });
     }, {threshold: 0});
     obs.observe(jump);
+  })();
+
+  // 「今月」ハイライトの自動切替
+  // 各月セクションの最終開催日（休みの日は除く）を読み取り、
+  // その日を過ぎた翌日から次の月へハイライトを移す。
+  (function(){
+    const FISCAL_YEAR = 2026; // 年度の開始年（4〜12月はこの年、1〜3月は翌年）
+
+    // 月セクションから最終開催日を求める（休み＝pill-off の日は数えない）
+    function lastSessionDate(monthEl){
+      let last = null;
+      monthEl.querySelectorAll('.day').forEach(day => {
+        if(day.querySelector('.pill-off')) return; // 休みの日は対象外
+        const label = day.querySelector('.date');
+        if(!label) return;
+        const md = label.textContent.match(/(\d+)\s*\/\s*(\d+)/);
+        if(!md) return;
+        const mo = parseInt(md[1], 10), da = parseInt(md[2], 10);
+        const year = mo >= 4 ? FISCAL_YEAR : FISCAL_YEAR + 1;
+        const dt = new Date(year, mo - 1, da);
+        if(!last || dt > last) last = dt;
+      });
+      return last;
+    }
+
+    const today = new Date();
+    today.setHours(0, 0, 0, 0);
+
+    // ページに並んでいる順（6月→3月）で、最終開催日をまだ過ぎていない最初の月を「今月」とする
+    let currentId = null;
+    for(const monthEl of document.querySelectorAll('.month')){
+      const last = lastSessionDate(monthEl);
+      if(!last) continue;
+      if(today <= last){ currentId = monthEl.id; break; }
+    }
+
+    // 既存のハイライトと「今月」ラベルをいったん外す
+    document.querySelectorAll('.jump-grid a, .month-tabs a').forEach(a => {
+      a.classList.remove('highlight');
+      a.removeAttribute('aria-current');
+      const now = a.querySelector('small.now');
+      if(now) now.remove();
+    });
+    if(!currentId) return; // 年度の全日程が終了したらハイライトなし
+
+    document.querySelectorAll('a[href="#' + currentId + '"]').forEach(a => {
+      a.classList.add('highlight');
+      a.setAttribute('aria-current', 'true');
+      // 月別ジャンプのボタンにだけ「今月」ラベルを付ける（ミニタブは幅が狭いので色のみ）
+      if(a.closest('.jump-grid') && !a.querySelector('small.now')){
+        const tag = document.createElement('small');
+        tag.className = 'now';
+        tag.textContent = '今月';
+        a.appendChild(tag);
+      }
+    });
   })();
 </script>
 </body>
