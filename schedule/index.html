@@ -19,6 +19,7 @@
     --a:#dbeafe;
     --b:#dcfce7;
     --c:#ffedd5;
+    --d:#ede9fe;
     --off:#e5e7eb;
   }
   *{box-sizing:border-box}
@@ -100,6 +101,7 @@
   .pill-a{background:var(--a);color:#1e3a8a}
   .pill-b{background:var(--b);color:#14532d}
   .pill-c{background:var(--c);color:#7c2d12}
+  .pill-d{background:var(--d);color:#4c1d95}
   .pill-off{background:var(--off);color:#4b5563}
 
   /* スケジュール */
@@ -120,6 +122,7 @@
   .slot-box.gA{border-color:#3b82f6;background:#dbeafe;color:#1e3a8a}
   .slot-box.gB{border-color:#22c55e;background:#dcfce7;color:#14532d}
   .slot-box.gC{border-color:#f97316;background:#ffedd5;color:#7c2d12}
+  .slot-box.gD{border-color:#8b5cf6;background:#ede9fe;color:#4c1d95}
   /* 学年数に応じて flex 比率を変える（5学年合計） */
   .slot-box[data-grades="1"]{flex:1}
   .slot-box[data-grades="2"]{flex:2}
@@ -217,6 +220,22 @@
           <div class="slot-box gC" data-grades="3">
             <div class="grades-row"><span class="grade">4年</span><span class="grade">5年</span><span class="grade">6年</span></div>
             <div class="time">14:20–15:20</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="legend-item">
+      <span class="pill pill-d">D</span>
+      <div class="body">
+        <div class="desc">2・3年は前半／4〜6年は後半（行事のない日）</div>
+        <div class="slots-row">
+          <div class="slot-box gD" data-grades="2">
+            <div class="grades-row"><span class="grade">2年</span><span class="grade">3年</span></div>
+            <div class="time">13:10–13:55</div>
+          </div>
+          <div class="slot-box gD" data-grades="3">
+            <div class="grades-row"><span class="grade">4年</span><span class="grade">5年</span><span class="grade">6年</span></div>
+            <div class="time">14:10–15:10</div>
           </div>
         </div>
       </div>
@@ -457,14 +476,14 @@
   </div>
 
   <div class="day">
-    <div class="head"><span class="date">9/30（水）</span><span class="pill pill-b">B</span></div>
+    <div class="head"><span class="date">9/30（水）</span><span class="pill pill-d">D</span></div>
     <div class="slots-row">
-      <div class="slot-box gB" data-grades="3">
-        <div class="grades-row"><span class="grade">2年</span><span class="grade">3年</span><span class="grade">4年</span></div>
+      <div class="slot-box gD" data-grades="2">
+        <div class="grades-row"><span class="grade">2年</span><span class="grade">3年</span></div>
         <div class="time">13:10–13:55</div>
       </div>
-      <div class="slot-box gB" data-grades="2">
-        <div class="grades-row"><span class="grade">5年</span><span class="grade">6年</span></div>
+      <div class="slot-box gD" data-grades="3">
+        <div class="grades-row"><span class="grade">4年</span><span class="grade">5年</span><span class="grade">6年</span></div>
         <div class="time">14:10–15:10</div>
       </div>
     </div>
@@ -514,14 +533,14 @@
   </div>
 
   <div class="day">
-    <div class="head"><span class="date">10/28（水）</span><span class="pill pill-b">B</span></div>
+    <div class="head"><span class="date">10/28（水）</span><span class="pill pill-d">D</span></div>
     <div class="slots-row">
-      <div class="slot-box gB" data-grades="3">
-        <div class="grades-row"><span class="grade">2年</span><span class="grade">3年</span><span class="grade">4年</span></div>
+      <div class="slot-box gD" data-grades="2">
+        <div class="grades-row"><span class="grade">2年</span><span class="grade">3年</span></div>
         <div class="time">13:10–13:55</div>
       </div>
-      <div class="slot-box gB" data-grades="2">
-        <div class="grades-row"><span class="grade">5年</span><span class="grade">6年</span></div>
+      <div class="slot-box gD" data-grades="3">
+        <div class="grades-row"><span class="grade">4年</span><span class="grade">5年</span><span class="grade">6年</span></div>
         <div class="time">14:10–15:10</div>
       </div>
     </div>
@@ -620,14 +639,14 @@
   </div>
 
   <div class="day">
-    <div class="head"><span class="date">12/23（水）</span><span class="pill pill-b">B</span></div>
+    <div class="head"><span class="date">12/23（水）</span><span class="pill pill-d">D</span></div>
     <div class="slots-row">
-      <div class="slot-box gB" data-grades="3">
-        <div class="grades-row"><span class="grade">2年</span><span class="grade">3年</span><span class="grade">4年</span></div>
+      <div class="slot-box gD" data-grades="2">
+        <div class="grades-row"><span class="grade">2年</span><span class="grade">3年</span></div>
         <div class="time">13:10–13:55</div>
       </div>
-      <div class="slot-box gB" data-grades="2">
-        <div class="grades-row"><span class="grade">5年</span><span class="grade">6年</span></div>
+      <div class="slot-box gD" data-grades="3">
+        <div class="grades-row"><span class="grade">4年</span><span class="grade">5年</span><span class="grade">6年</span></div>
         <div class="time">14:10–15:10</div>
       </div>
     </div>
@@ -653,14 +672,14 @@
   </div>
 
   <div class="day">
-    <div class="head"><span class="date">1/20（水）</span><span class="pill pill-b">B</span></div>
+    <div class="head"><span class="date">1/20（水）</span><span class="pill pill-d">D</span></div>
     <div class="slots-row">
-      <div class="slot-box gB" data-grades="3">
-        <div class="grades-row"><span class="grade">2年</span><span class="grade">3年</span><span class="grade">4年</span></div>
+      <div class="slot-box gD" data-grades="2">
+        <div class="grades-row"><span class="grade">2年</span><span class="grade">3年</span></div>
         <div class="time">13:10–13:55</div>
       </div>
-      <div class="slot-box gB" data-grades="2">
-        <div class="grades-row"><span class="grade">5年</span><span class="grade">6年</span></div>
+      <div class="slot-box gD" data-grades="3">
+        <div class="grades-row"><span class="grade">4年</span><span class="grade">5年</span><span class="grade">6年</span></div>
         <div class="time">14:10–15:10</div>
       </div>
     </div>
@@ -700,14 +719,14 @@
   </div>
 
   <div class="day">
-    <div class="head"><span class="date">2/10（水）</span><span class="pill pill-b">B</span></div>
+    <div class="head"><span class="date">2/10（水）</span><span class="pill pill-d">D</span></div>
     <div class="slots-row">
-      <div class="slot-box gB" data-grades="3">
-        <div class="grades-row"><span class="grade">2年</span><span class="grade">3年</span><span class="grade">4年</span></div>
+      <div class="slot-box gD" data-grades="2">
+        <div class="grades-row"><span class="grade">2年</span><span class="grade">3年</span></div>
         <div class="time">13:10–13:55</div>
       </div>
-      <div class="slot-box gB" data-grades="2">
-        <div class="grades-row"><span class="grade">5年</span><span class="grade">6年</span></div>
+      <div class="slot-box gD" data-grades="3">
+        <div class="grades-row"><span class="grade">4年</span><span class="grade">5年</span><span class="grade">6年</span></div>
         <div class="time">14:10–15:10</div>
       </div>
     </div>
@@ -728,14 +747,14 @@
   </div>
 
   <div class="day">
-    <div class="head"><span class="date">2/24（水）</span><span class="pill pill-b">B</span></div>
+    <div class="head"><span class="date">2/24（水）</span><span class="pill pill-d">D</span></div>
     <div class="slots-row">
-      <div class="slot-box gB" data-grades="3">
-        <div class="grades-row"><span class="grade">2年</span><span class="grade">3年</span><span class="grade">4年</span></div>
+      <div class="slot-box gD" data-grades="2">
+        <div class="grades-row"><span class="grade">2年</span><span class="grade">3年</span></div>
         <div class="time">13:10–13:55</div>
       </div>
-      <div class="slot-box gB" data-grades="2">
-        <div class="grades-row"><span class="grade">5年</span><span class="grade">6年</span></div>
+      <div class="slot-box gD" data-grades="3">
+        <div class="grades-row"><span class="grade">4年</span><span class="grade">5年</span><span class="grade">6年</span></div>
         <div class="time">14:10–15:10</div>
       </div>
     </div>
@@ -761,28 +780,28 @@
   </div>
 
   <div class="day">
-    <div class="head"><span class="date">3/10（水）</span><span class="pill pill-b">B</span></div>
+    <div class="head"><span class="date">3/10（水）</span><span class="pill pill-d">D</span></div>
     <div class="slots-row">
-      <div class="slot-box gB" data-grades="3">
-        <div class="grades-row"><span class="grade">2年</span><span class="grade">3年</span><span class="grade">4年</span></div>
+      <div class="slot-box gD" data-grades="2">
+        <div class="grades-row"><span class="grade">2年</span><span class="grade">3年</span></div>
         <div class="time">13:10–13:55</div>
       </div>
-      <div class="slot-box gB" data-grades="2">
-        <div class="grades-row"><span class="grade">5年</span><span class="grade">6年</span></div>
+      <div class="slot-box gD" data-grades="3">
+        <div class="grades-row"><span class="grade">4年</span><span class="grade">5年</span><span class="grade">6年</span></div>
         <div class="time">14:10–15:10</div>
       </div>
     </div>
   </div>
 
   <div class="day">
-    <div class="head"><span class="date">3/17（水）</span><span class="pill pill-b">B</span></div>
+    <div class="head"><span class="date">3/17（水）</span><span class="pill pill-d">D</span></div>
     <div class="slots-row">
-      <div class="slot-box gB" data-grades="3">
-        <div class="grades-row"><span class="grade">2年</span><span class="grade">3年</span><span class="grade">4年</span></div>
+      <div class="slot-box gD" data-grades="2">
+        <div class="grades-row"><span class="grade">2年</span><span class="grade">3年</span></div>
         <div class="time">13:10–13:55</div>
       </div>
-      <div class="slot-box gB" data-grades="2">
-        <div class="grades-row"><span class="grade">5年</span><span class="grade">6年</span></div>
+      <div class="slot-box gD" data-grades="3">
+        <div class="grades-row"><span class="grade">4年</span><span class="grade">5年</span><span class="grade">6年</span></div>
         <div class="time">14:10–15:10</div>
       </div>
     </div>
@@ -810,7 +829,7 @@
     <dt>川崎市教育委員会</dt>
     <dd>☎️ 044-200-3565（地域教育推進室・担当：浜崎）</dd>
   </div>
-  <div class="updated">最終更新：2026年5月26日</div>
+  <div class="updated">最終更新：2026年9月29日</div>
 </footer>
 
 </div>
